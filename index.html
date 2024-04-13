@@ -1,81 +1,99 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>Home - Project Neutron</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Particle.js Example</title>
+  <!-- Include Particle.js library -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
+    /* Style for the particles container */
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #000000; /* Choose your desired background color */
+      z-index: -1; /* Ensure particles are behind other content */
     }
-    .container {
-      max-width: 800px;
-      margin: 20px auto;
-      padding: 0 20px;
-    }
-    h3 {
-      color: #333;
-    }
-    .game-link {
-      display: block;
-      margin-bottom: 10px;
-      text-decoration: none;
-      color: #007bff;
-    }
-    .game-link:hover {
-      text-decoration: underline;
+
+    /* Style for centered text */
+    .centered-text {
+      position: absolute;
+      top: 45%; /* Position 45% from the top */
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Croogla4F', sans-serif; /* Use the provided font */
+      font-size: 32px; /* Adjust font size */
+      color: #ffffff; /* Set text color */
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <p>This is just super quick HTML with a bit of CSS, I will add a little bit more of CSS later (Maybe) :)</p>
-    <p>A reminder that more games will be added, but will take a while.</p>
-    <h3>Games</h3>
-    <div>
-      <a class="game-link" href="/gs/1v1-lol">1v1.lol</a>
-      <a class="game-link" href="/gs/2048">2048</a>
-      <a class="game-link" href="/gs/monkey-mart">Monkey Mart</a>
-      <a class="game-link" href="/gs/stickman-hook">Stickman Hook</a>
-      <a class="game-link" href="/gs/worlds-hardest-game">World's Hardest Game</a>
-      <a class="game-link" href="/gs/agariolite">Agar.io Lite</a>
-      <a class="game-link" href="/gs/bloonstowerdefense1">Bloons Tower Defense 1</a>
-      <a class="game-link" href="/gs/bloonstowerdefense2">Bloons Tower Defense 2</a>
-      <a class="game-link" href="/gs/bloonstowerdefense5">Bloons Tower Defense 5</a>
-      <a class="game-link" href="/gs/bloxorz">Bloxorz</a>
-      <a class="game-link" href="/gs/breakingthebank">Breaking the Bank</a>
-      <a class="game-link" href="/gs/celeste">Celeste</a>
-      <a class="game-link" href="/gs/edgenotfound">Edge Not Found</a>
-      <a class="game-link" href="/gs/escapingtheprison">Escaping the Prison</a>
-      <a class="game-link" href="/gs/evilglitch">Evil Glitch</a>
-      <a class="game-link" href="/gs/fleeingthecomplex">Fleeing the Complex</a>
-      <a class="game-link" href="/gs/floodrunner4">Flood Runner 4</a>
-      <a class="game-link" href="/gs/fluidsimulator">Fluid Simulator</a>
-      <a class="game-link" href="/gs/geometrydash">Geometry Dash</a>
-      <a class="game-link" href="/gs/holeio">Hole.io</a>
-      <a class="game-link" href="/gs/infiltratingtheairship">Infiltrating the Airship</a>
-      <a class="game-link" href="/gs/itsrainingboxes">It's Raining Boxes</a>
-      <a class="game-link" href="/gs/justoneboss">Just One Boss</a>
-      <a class="game-link" href="/gs/learntofly1">Learn to Fly 1</a>
-      <a class="game-link" href="/gs/learntofly2">Learn to Fly 2</a>
-      <a class="game-link" href="/gs/learntofly3">Learn to Fly 3</a>
-      <a class="game-link" href="/gs/learntoflyidle">Learn to Fly Idle</a>
-      <a class="game-link" href="/gs/mountainmaze">Mountain Maze</a>
-      <a class="game-link" href="/gs/ninjavsevilcorp">Ninja vs Evil Corp</a>
-      <a class="game-link" href="/gs/offlineparadise">Offline Paradise</a>
-      <a class="game-link" href="/gs/oregon-trail.py">Oregon Trail</a>
-      <a class="game-link" href="/gs/radiusraid">Radius Raid</a>
-      <a class="game-link" href="/gs/raftwars">Raft Wars</a>
-      <a class="game-link" href="/gs/raftwars2">Raft Wars 2</a>
-      <a class="game-link" href="/gs/rollingforests">Rolling Forests</a>
-      <a class="game-link" href="/gs/sandgame">Sand Game</a>
-      <a class="game-link" href="/gs/slope">Slope</a>
-      <a class="game-link" href="/gs/spacebarclicker">Spacebar Clicker</a>
-      <a class="game-link" href="/gs/stack">Stack</a>
-      <a class="game-link" href="/gs/stealingthediamond">Stealing the Diamond</a>
-      <a class="game-link" href="/gs/stickmanhook">Stickman Hook (3)</a>
-      <a class="game-link" href="/gs/supermario64">Super Mario 64</a>
-    </div>
-  </div>
+  <!-- particles.js container -->
+  <div id="particles-js"></div>
+
+  <!-- Centered text -->
+  <div class="centered-text">Project Neutron</div>
+
+  <!-- Your other HTML content goes here -->
+
+  <!-- Initialize Particle.js with provided configuration -->
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 160, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: {
+          type: "circle",
+          stroke: { width: 0, color: "#000000" },
+          polygon: { nb_sides: 5 },
+          image: { src: "img/github.svg", width: 100, height: 100 },
+        },
+        opacity: {
+          value: 1,
+          random: true,
+          anim: { enable: false, speed: 1, opacity_min: 0, sync: false },
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: { enable: false, speed: 4, size_min: 0.3, sync: false },
+        },
+        line_linked: {
+          enable: false,
+          distance: 150,
+          color: "#ffffff",
+          opacity: 0.4,
+          width: 1,
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "none",
+          random: true,
+          straight: false,
+          out_mode: "out",
+          bounce: false,
+          attract: { enable: false, rotateX: 600, rotateY: 600 },
+        },
+      },
+      interactivity: {
+        detect_on: "canvas",
+        events: {
+          onhover: { enable: false, mode: "repulse" },
+          onclick: { enable: true, mode: "push" },
+          resize: true,
+        },
+        modes: {
+          grab: { distance: 400, line_linked: { opacity: 1 } },
+          bubble: { distance: 250, size: 0, duration: 2, opacity: 0, speed: 3 },
+          repulse: { distance: 400, duration: 0.4 },
+          push: { particles_nb: 4 },
+          remove: { particles_nb: 2 },
+        },
+      },
+      retina_detect: true,
+    });
+  </script>
 </body>
 </html>
