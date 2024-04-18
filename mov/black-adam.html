@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Neutron Movies</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black; /* Set the background color to black */
+    }
+    video {
+      width: 100%;
+      height: 100%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+<video id="video" autoplay>
+  <source src="https://github.com/RFHS-Project-Neutron/V1/assets/148154322/65909a39-208b-432e-a79e-e98568bed1d4" type="video/mp4">
+  Your browser does not support the video tag.
+</video>
+
+<iframe id="iframe" style="display:none;" src="about:blank"></iframe>
+
+<script>
+  var video = document.getElementById('video');
+  var iframe = document.getElementById('iframe');
+  
+  video.addEventListener('ended', function() {
+    video.style.display = 'none';
+    iframe.src = 'https://drive.google.com/file/d/1zs2JXhwwFB8QXgigGkRWD-v98bHXdjJM/preview';
+    iframe.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
