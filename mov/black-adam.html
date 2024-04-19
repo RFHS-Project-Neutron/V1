@@ -42,8 +42,10 @@
     iframe.style.display = 'block';
   });
 
-  // Autoplay the video
-  video.play();
+  // Autoplay the video when the page loads
+  window.addEventListener('load', function() {
+    video.play();
+  });
 </script>
 
 </body>
