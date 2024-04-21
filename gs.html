@@ -13,57 +13,59 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Games on Project Neutron</title>
 <style>
-  /* Import Lexend Bold font */
-  @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
+/* Import Lexend Bold font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
 
-  /* Global styles */
-  body {
+/* Global styles */
+body {
     margin: 0; /* Remove default margin */
     font-family: 'Lexend', sans-serif; /* Apply Lexend Bold font */
-  }
+}
 
 /* Style for the container */
 .container {
-  width: 90vw;
-  margin: auto;
-  padding: 10px;
-  margin-top: 6%; /* Adjust the margin-top to move the leaderboard down */
+    width: 90vw;
+    margin: auto;
+    padding: 10px;
+    margin-top: 6%; /* Adjust the margin-top to move the leaderboard down */
 }
-
 
 /* Style for the leaderboard */
 .leaderboard {
-  top: 11%; /* Change this value to adjust the distance from the top */
-  background-color: #34495e; /* Light gray background */
-  border-radius: 10px; /* Rounded corners */
-  overflow: hidden; /* Ensure rounded corners are applied */
-  padding: 10px; /* Add some padding */
-  text-align: center; /* Center text horizontally */
-  height: 43vh;
+    top: 11%; /* Change this value to adjust the distance from the top */
+    background-color: #34495e; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners are applied */
+    padding: 10px; /* Add some padding */
+    text-align: center; /* Center text horizontally */
+    height: 43vh;
+    font-family: 'Lexend', sans-serif; /* Apply Lexend Bold font */
 }
 
-  /* Style for the big rectangle */
-  .big-rectangle {
+/* Style for the big rectangle */
+.big-rectangle {
     background-color: #2c3e50; /* Gray background color */
     border-radius: 10px; /* Rounded corners */
     color: #fff; /* Text color */
     padding: 20px 0; /* Add padding */
-  }
+    font-weight: bold; /* Make the text bold */
+}
 
-  /* Style for the countdown text */
-  .countdown-text {
+/* Style for the countdown text */
+.countdown-text {
     font-size: 12px; /* Smaller font size */
-  }
+    font-weight: bold; /* Make the text bold */
+}
 
-  /* Style for the boxes container */
-  .boxes-container {
+/* Style for the boxes container */
+.boxes-container {
     display: flex; /* Use flexbox to arrange boxes */
     justify-content: space-between; /* Align boxes with space between them */
     margin-top: 20px; /* Add margin to separate from the leaderboard */
-  }
+}
 
-  /* Style for each box */
-  .individual-box-text {
+/* Style for each box */
+.individual-box-text {
     flex: 0 0 calc(33.333% - 2%); /* Each box takes one-third of the available space minus margin */
     background-color: #2c3e50; /* Light gray background */
     border-radius: 10px; /* Rounded corners */
@@ -72,33 +74,37 @@
     box-sizing: border-box; /* Include padding in the width */
     text-align: center;
     color: #fff;
-  }
+    font-weight: bold; /* Make the text bold */
+}
 
-  /* Style for the smaller gray text */
-  .small-text {
+/* Style for the smaller gray text */
+.small-text {
     font-size: 12px; /* Smaller font size */
     color: #f8f8f8; /* Gray text color */
     text-align: center; /* Center text horizontally */
     margin-top: 5px; /* Add margin on top */
-  }
-  
-  /* Style for the Submit Score button */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Style for the Submit Score button */
 .submit-button {
-  display: block; /* Make the button a block element */
-  background-color: #e74c3c; /* Red button color */
-  color: #fff; /* Text color */
-  text-decoration: none; /* Remove default underline */
-  border-radius: 10px; /* Rounded corners */
-  padding: 15px 0; /* Add padding */
-  margin-top: 20px; /* Add margin on top */
-  font-size: 18px; /* Font size */
-  transition: background-color 0.3s ease; /* Smooth transition for background color */
+    display: block; /* Make the button a block element */
+    background-color: #e74c3c; /* Red button color */
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove default underline */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px 0; /* Add padding */
+    margin-top: 20px; /* Add margin on top */
+    font-size: 18px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    font-weight: bold; /* Make the text bold */
 }
 
 /* Hover effect for the button */
 .submit-button:hover {
-  background-color: #2980b9; /* Darker blue background color on hover */
+    background-color: #2980b9; /* Darker blue background color on hover */
 }
+
 
 
 </style>
