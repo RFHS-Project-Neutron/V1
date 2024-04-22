@@ -1,4 +1,161 @@
 <!DOCTYPE html>
+<html>
+<head>
+<title>Games - Project Neutron</title>
+<style>
+body {
+margin: 0;
+padding: 0;
+}
+
+.navigation {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+padding: 10px;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+}
+
+.nav-link {
+text-decoration: none;
+color: #fff;
+font-size: 1.5em;
+font-family: 'Quicksand', sans-serif;
+font-weight: bold;
+margin-right: 20px;
+transition: transform 0.3s ease;
+background-color: transparent;
+border-radius: 10px;
+padding: 5px 30px; /* Increased padding for width */
+position: relative; /* Added position relative */
+}
+
+.nav-link:before {
+content: "";
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 3px solid #f5f5f5; /* Green outline for the gray box */
+border-radius: 10px;
+z-index: -1;
+}
+
+.nav-link:hover {
+transform: scale(0.95);
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+cursor: pointer;
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+min-width: 200px;
+z-index: 1;
+transform: translateY(100%) scale(0.95);
+transition: transform 0.3s ease;
+padding: 10px;
+opacity: 0;
+}
+
+.dropdown.open .dropdown-content {
+display: block;
+transform: translateY(0%) scale(0.8);
+opacity: 1;
+}
+
+.dropdown-option {
+color: #fff;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+margin-bottom: 15px;
+margin-left: -35px;
+text-align: center;
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.dropdown .arrow-down {
+position: absolute;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+width: 0;
+height: 0;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+border-top: 5px solid white;
+}
+
+@keyframes fadeIn {
+0% {
+opacity: 0;
+transform: translateY(-10px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+</style>
+</head>
+<body>
+<header class="navigation">
+<a href="index.html" class="nav-link">Home</a>
+<a href="/gs.html" class="nav-link">Games</a>
+</div>
+<div class="dropdown">
+<a class="nav-link">Cloak Tab<span class="arrow-down"></span></a>
+<div class="dropdown-content">
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://www.google.com/favicon.ico', 'Google')">Google</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://ssl.gstatic.com/images/branding/product/2x/hh_drive_96dp.png', 'Google Drive')">Google Drive</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://raw.githubusercontent.com/PlayFlixo/playflixo/main/Assets/google-doc-favicon.png', 'Google Docs')">Google Docs</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets-global.website-files.com/5d6db64572061db9c481aaeb/60182f5c9e9d2a1f6fead710_classlink-icon-symbol-large.png', 'Wildcat Launchpad')">ClassLink</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://i0.wp.com/www.mpslakers.com/wp-content/uploads/2020/01/schoology-logo.png?fit=511%2C511&ssl=1', 'Home | Schoology')">Schoology</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1667482730/drk12org/idrzgqs3vcg2upruomdg/ic.png', 'Infinite Campus')">Infinite Campus</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets.clever.com/resource-icons/apps/5fd279ea0ab69b00013f8036/icon_60043f6.png', 'SmartPass')">SmartPass</a>
+</div>
+</div>
+</header>
+
+<script>
+function changeFaviconAndTitle(faviconUrl, title) {
+// Change favicon
+var favicon = document.querySelector('link[rel="icon"]');
+favicon.href = faviconUrl;
+
+// Change tab title
+document.title = title;
+}
+
+var dropdowns = document.querySelectorAll('.dropdown');
+
+dropdowns.forEach(function(dropdown) {
+dropdown.addEventListener('click', function() {
+dropdown.classList.toggle('open');
+});
+});
+</script>
+<script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script></body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <!-- Meta tags and stylesheets for your website -->
@@ -439,158 +596,4 @@ document.getElementById('1v1lol').addEventListener('click', function(event) {
 
 
 </body>
-</html>
-
-
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<title>Flixo</title>
-<style>
-body {
-margin: 0;
-padding: 0;
-}
-
-.navigation {
-display: flex;
-justify-content: center;
-align-items: center;
-background-color: transparent;
-padding: 10px;
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-}
-
-.nav-link {
-text-decoration: none;
-color: #fff;
-font-size: 1.5em;
-font-family: 'Quicksand', sans-serif;
-font-weight: bold;
-margin-right: 20px;
-transition: transform 0.3s ease;
-background-color: transparent;
-border-radius: 10px;
-padding: 5px 30px; /* Increased padding for width */
-position: relative; /* Added position relative */
-}
-
-.nav-link:before {
-content: "";
-position: absolute;
-top: -2px;
-left: -2px;
-right: -2px;
-bottom: -2px;
-border: 3px solid #f5f5f5; /* Green outline for the gray box */
-border-radius: 10px;
-z-index: -1;
-}
-
-.nav-link:hover {
-transform: scale(0.95);
-}
-
-.dropdown {
-position: relative;
-display: inline-block;
-cursor: pointer;
-animation: fadeIn 0.5s ease-in-out;
-}
-
-.dropdown-content {
-display: none;
-position: absolute;
-min-width: 200px;
-z-index: 1;
-transform: translateY(100%) scale(0.95);
-transition: transform 0.3s ease;
-padding: 10px;
-opacity: 0;
-}
-
-.dropdown.open .dropdown-content {
-display: block;
-transform: translateY(0%) scale(0.8);
-opacity: 1;
-}
-
-.dropdown-option {
-color: #fff;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-margin-bottom: 15px;
-margin-left: -35px;
-text-align: center;
-animation: fadeIn 0.5s ease-in-out;
-}
-
-.dropdown .arrow-down {
-position: absolute;
-top: 50%;
-right: 10px;
-transform: translateY(-50%);
-width: 0;
-height: 0;
-border-left: 5px solid transparent;
-border-right: 5px solid transparent;
-border-top: 5px solid white;
-}
-
-@keyframes fadeIn {
-0% {
-opacity: 0;
-transform: translateY(-10px);
-}
-100% {
-opacity: 1;
-transform: translateY(0);
-}
-}
-</style>
-</head>
-<body>
-<header class="navigation">
-<a href="index.html" class="nav-link">Home</a>
-<a href="/gs.html" class="nav-link">Games</a>
-</div>
-<div class="dropdown">
-<a class="nav-link">Cloak Tab<span class="arrow-down"></span></a>
-<div class="dropdown-content">
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://www.google.com/favicon.ico', 'Google')">Google</a>
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://ssl.gstatic.com/images/branding/product/2x/hh_drive_96dp.png', 'Google Drive')">Google Drive</a>
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://raw.githubusercontent.com/PlayFlixo/playflixo/main/Assets/google-doc-favicon.png', 'Google Docs')">Google Docs</a>
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets-global.website-files.com/5d6db64572061db9c481aaeb/60182f5c9e9d2a1f6fead710_classlink-icon-symbol-large.png', 'Wildcat Launchpad')">ClassLink</a>
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://i0.wp.com/www.mpslakers.com/wp-content/uploads/2020/01/schoology-logo.png?fit=511%2C511&ssl=1', 'Home | Schoology')">Schoology</a>
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1667482730/drk12org/idrzgqs3vcg2upruomdg/ic.png', 'Infinite Campus')">Infinite Campus</a>
-<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets.clever.com/resource-icons/apps/5fd279ea0ab69b00013f8036/icon_60043f6.png', 'SmartPass')">SmartPass</a>
-</div>
-</div>
-</header>
-
-<script>
-function changeFaviconAndTitle(faviconUrl, title) {
-// Change favicon
-var favicon = document.querySelector('link[rel="icon"]');
-favicon.href = faviconUrl;
-
-// Change tab title
-document.title = title;
-}
-
-var dropdowns = document.querySelectorAll('.dropdown');
-
-dropdowns.forEach(function(dropdown) {
-dropdown.addEventListener('click', function() {
-dropdown.classList.toggle('open');
-});
-});
-</script>
-<script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script></body>
 </html>
