@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Games - Project Neutron</title>
+<style>
+body {
+margin: 0;
+padding: 0;
+}
+
+.navigation {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+padding: 10px;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+}
+
+.nav-link {
+text-decoration: none;
+color: #fff;
+font-size: 1.5em;
+font-family: 'Quicksand', sans-serif;
+font-weight: bold;
+margin-right: 20px;
+transition: transform 0.3s ease;
+background-color: transparent;
+border-radius: 10px;
+padding: 5px 30px; /* Increased padding for width */
+position: relative; /* Added position relative */
+}
+
+.nav-link:before {
+content: "";
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 3px solid #f5f5f5; /* Green outline for the gray box */
+border-radius: 10px;
+z-index: -1;
+}
+
+.nav-link:hover {
+transform: scale(0.95);
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+cursor: pointer;
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+min-width: 200px;
+z-index: 1;
+transform: translateY(100%) scale(0.95);
+transition: transform 0.3s ease;
+padding: 10px;
+opacity: 0;
+}
+
+.dropdown.open .dropdown-content {
+display: block;
+transform: translateY(0%) scale(0.8);
+opacity: 1;
+}
+
+.dropdown-option {
+color: #fff;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+margin-bottom: 15px;
+margin-left: -35px;
+text-align: center;
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.dropdown .arrow-down {
+position: absolute;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+width: 0;
+height: 0;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+border-top: 5px solid white;
+}
+
+@keyframes fadeIn {
+0% {
+opacity: 0;
+transform: translateY(-10px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+</style>
+</head>
+<body>
+<header class="navigation">
+<a href="index.html" class="nav-link">Home</a>
+<a href="/gs.html" class="nav-link">Games</a>
+</div>
+<div class="dropdown">
+<a class="nav-link">Cloak Tab<span class="arrow-down"></span></a>
+<div class="dropdown-content">
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://www.google.com/favicon.ico', 'Google')">Google</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://ssl.gstatic.com/images/branding/product/2x/hh_drive_96dp.png', 'Google Drive')">Google Drive</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://raw.githubusercontent.com/PlayFlixo/playflixo/main/Assets/google-doc-favicon.png', 'Google Docs')">Google Docs</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets-global.website-files.com/5d6db64572061db9c481aaeb/60182f5c9e9d2a1f6fead710_classlink-icon-symbol-large.png', 'Wildcat Launchpad')">ClassLink</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://i0.wp.com/www.mpslakers.com/wp-content/uploads/2020/01/schoology-logo.png?fit=511%2C511&ssl=1', 'Home | Schoology')">Schoology</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1667482730/drk12org/idrzgqs3vcg2upruomdg/ic.png', 'Infinite Campus')">Infinite Campus</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets.clever.com/resource-icons/apps/5fd279ea0ab69b00013f8036/icon_60043f6.png', 'SmartPass')">SmartPass</a>
+</div>
+</div>
+</header>
+
+<script>
+function changeFaviconAndTitle(faviconUrl, title) {
+// Change favicon
+var favicon = document.querySelector('link[rel="icon"]');
+favicon.href = faviconUrl;
+
+// Change tab title
+document.title = title;
+}
+
+var dropdowns = document.querySelectorAll('.dropdown');
+
+dropdowns.forEach(function(dropdown) {
+dropdown.addEventListener('click', function() {
+dropdown.classList.toggle('open');
+});
+});
+</script>
+<script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script></body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and stylesheets for your website -->
+</head>
+<body>
+
+<!-- Leaderboard section -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Games on Project Neutron</title>
+<style>
+/* Import Lexend Bold font */
+@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
+
+/* Global styles */
+body {
+    margin: 0; /* Remove default margin */
+    font-family: 'Lexend', sans-serif; /* Apply Lexend Bold font */
+}
+
+/* Style for the container */
+.container {
+    width: 90vw;
+    margin: auto;
+    padding: 10px;
+    margin-top: 6%; /* Adjust the margin-top to move the leaderboard down */
+}
+
+/* Style for the leaderboard */
+.leaderboard {
+    top: 11%; /* Change this value to adjust the distance from the top */
+    background-color: #34495e; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    overflow: hidden; /* Ensure rounded corners are applied */
+    padding: 10px; /* Add some padding */
+    text-align: center; /* Center text horizontally */
+    height: 43vh;
+    font-family: 'Lexend', sans-serif; /* Apply Lexend Bold font */
+}
+
+/* Style for the big rectangle */
+.big-rectangle {
+    background-color: #2c3e50; /* Gray background color */
+    border-radius: 10px; /* Rounded corners */
+    color: #fff; /* Text color */
+    padding: 20px 0; /* Add padding */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Style for the countdown text */
+.countdown-text {
+    font-size: 12px; /* Smaller font size */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Style for the boxes container */
+.boxes-container {
+    display: flex; /* Use flexbox to arrange boxes */
+    justify-content: space-between; /* Align boxes with space between them */
+    margin-top: 20px; /* Add margin to separate from the leaderboard */
+}
+
+/* Style for each box */
+.individual-box-text {
+    flex: 0 0 calc(33.333% - 2%); /* Each box takes one-third of the available space minus margin */
+    background-color: #2c3e50; /* Light gray background */
+    border-radius: 10px; /* Rounded corners */
+    margin: 0 1%; /* 1% margin between boxes */
+    padding: 10px; /* Add padding */
+    box-sizing: border-box; /* Include padding in the width */
+    text-align: center;
+    color: #fff;
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Style for the smaller gray text */
+.small-text {
+    font-size: 12px; /* Smaller font size */
+    color: #f8f8f8; /* Gray text color */
+    text-align: center; /* Center text horizontally */
+    margin-top: 5px; /* Add margin on top */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Style for the Submit Score button */
+.submit-button {
+    display: block; /* Make the button a block element */
+    background-color: #e74c3c; /* Red button color */
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove default underline */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px 0; /* Add padding */
+    margin-top: 20px; /* Add margin on top */
+    font-size: 18px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+    font-weight: bold; /* Make the text bold */
+}
+
+/* Hover effect for the button */
+.submit-button:hover {
+    background-color: #2980b9; /* Darker blue background color on hover */
+}
+
+
+
+</style>
+</head>
+<body>
+  <div class="container">
+    <!-- Leaderboard container -->
+    <div class="leaderboard">
+      <!-- Big rectangle -->
+      <div class="big-rectangle">
+        <div class="big-rectangle-text">Leaderboard</div>
+        <div class="big-rectangle-text" style="font-size: 16px;">Current Game: It's Raining Boxes</div>
+        <div class="big-rectangle-text countdown-text">Ends in: <span id="countdown">...</span></div>
+      </div>
+      
+      <!-- Boxes container -->
+      <div class="boxes-container">
+        <!-- Box 1 -->
+        <div class="individual-box-text">
+          <div class="small-text">Score: 602</div>
+          Because Rentendofr
+          <div class="small-text">1st Place</div>
+        </div>
+        <!-- Box 2 -->
+        <div class="individual-box-text">
+          <div class="small-text">Score: 594</div>
+          Chaz Greeder
+          <div class="small-text">2nd Place</div>
+        </div>
+        <!-- Box 3 -->
+        <div class="individual-box-text">
+          <div class="small-text">Score: 443</div>
+          Because Rentendofr
+          <div class="small-text">3rd Place</div>
+        </div>
+      </div>
+      
+      <!-- Smaller gray text -->
+<div class="small-text">Ends 05/01/2024. <a href="https://algebrafornoobs.site/docs/contest/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a> apply.</div>
+
+
+      
+      <!-- Submit Score button -->
+<a href="/forms/submit-score" class="submit-button">Submit Score</a>
+    </div>
+
+  </div>
+
+  <script>
+    // Calculate the countdown timer
+    var countdownDate = new Date("2024-05-01T09:00:00").getTime();
+    var countdown = setInterval(function() {
+      var now = new Date().getTime();
+      var distance = countdownDate - now;
+      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+      if (distance < 0) {
+        clearInterval(countdown);
+        document.getElementById("countdown").innerHTML = "EXPIRED";
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
+
+<!-- Games section -->
+<div>
+<h3>‎ </h3>
+<h>‎ </h3>
+</div>
+
+<!-- Paste the games code here -->
+
+</body>
+</html>
+
+
+
+
+<div>
+<h3>‎ </h3>
+<h>‎ </h3>
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Analytics + Ads -->
+
+    <!-- Google Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9494126940648215"
+     crossorigin="anonymous"></script>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B8K2DH2XEM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B8K2DH2XEM');
+</script>
+
+<!--Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "jzlts1tatm");
+</script>
+
+<script defer src="https://us.umami.is/script.js" data-website-id="be5f8945-a14d-47b5-92b9-784879a99bab"></script>
+
+<meta name="monetag" content="26b77ec34fbc49291359b7365c16fcb7">
+<script async="async" data-cfasync="false" src="//thubanoa.com/1?z=7372549"></script>
+
+<!-- End Analytics -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Library</title>
+<style>
+body {
+background-color: #2c3e50;
+font-family: 'Lexend Bold', sans-serif;
+color: #f5f5f5;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+.game {
+text-align: center;
+padding: 1%;
+border-radius: 15px;
+margin: 10px;
+background-color: #34495e;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+flex: 0 0 calc(12.5% - 12px);
+text-decoration: none; /* Remove underline from the link */
+color: #f5f5f5; /* Set text color for the link */
+display: block; /* Make the entire box clickable */
+transition: transform 0.3s ease; /* Hover animation */
+}
+
+.game img {
+  border-radius: 12px;
+  width: auto;
+  height: 240px; /* Adjust the height to maintain a 27:40 aspect ratio */
+  max-width: 100%;
+}
+
+
+.game h3 {
+font-size: 14px;
+margin-top: 10px;
+}
+
+/* Hover Animation */
+.game:hover {
+transform: scale(1.1);
+}
+
+/* Move the top game down by 8% */
+.game:first-child {
+margin-top: 6%;
+}
+
+/* Move the first 6 games down by 8% */
+.game:nth-child(-n+11) {
+margin-top: 6%;
+}
+</style>
+</head>
+<body>
+
+<a href="#" class="game" id="1v1lol">
+<img src="https://img.utdstc.com/icon/983/22a/98322a3b2be892eed31589906ffd949b68bcccc9a21ba562987965b5ec6bc6de:200">
+<h3>1v1.LOL</h3>
+</a>
+
+<a href="/gs/2048" class="game">
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png">
+<h3>2048</h3>
+</a>
+
+<a href="/gs/agariolite" class="game">
+<img src="https://downloadr2.apkmirror.com/wp-content/uploads/2021/07/18/6102a3138c854.png">
+<h3>Agar.io Lite</h3>
+</a>
+
+<a href="/gs/bit-planes" class="game">
+<img src="/assets/images/bit-planes-logo.png">
+<h3>Bit Planes</h3>
+</a>
+  
+<a href="/gs/bloxorz" class="game">
+<img src="https://img.utdstc.com/icon/faa/caa/faacaab605da5f5f4653b1c646c3c8749690ff9ddd6bafa089b6dc3249313696:200">
+<h3>Bloxorz</h3>
+</a>
+  
+<a href="/gs/celeste" class="game">
+<img src="https://sm.ign.com/ign_za/cover/c/celeste/celeste_zshf.jpg">
+<h3>Celeste</h3>
+</a>
+  
+<a href="/gs/edgenotfound" class="game">
+<img src="https://gameonline.co.id/thumbs/edge-not-found-l1q.jpeg">
+<h3>Edge Not Found</h3>
+</a>
+  
+<a href="/gs/evilglitch" class="game">
+<img src="https://raw.githubusercontent.com/agar3s/devil-glitches/master/screenshots/EvilGlitchLogo.jpg">
+<h3>Evil Glitch</h3>
+</a>
+  
+<a href="/gs/fluidsimulator" class="game">
+<img src="https://play-lh.googleusercontent.com/7XEs4IyWmhOU_rb0RzuoIPfoOYFKf5dENe1pIXp9ttx0GkSzuYbEkybObP0CijefgXo">
+<h3>Fluid Simulator</h3>
+</a>
+  
+<a href="/gs/geometrydash" class="game">
+<img src="https://upload.wikimedia.org/wikipedia/en/3/35/Geometry_Dash_Logo.PNG">
+<h3>Geometry Dash</h3>
+</a>
+  
+<a href="/gs/holeio" class="game">
+<img src="https://upload.wikimedia.org/wikipedia/en/c/ca/Hole.io_logo.jpg">
+<h3>Hole.io</h3>
+</a>
+  
+<a href="/gs/itsrainingboxes" class="game">
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Purple6/v4/7a/2e/78/7a2e783c-a05d-8163-d40d-d21bdab918a0/source/256x256bb.jpg">
+<h3>It's Raining Boxes</h3>
+</a>
+  
+<a href="/gs/justoneboss" class="game">
+<img src="https://img.itch.zone/aW1hZ2UvMjI2MjExLzEwNjk4NzEucG5n/original/3eGkqQ.png">
+<h3>Just One Boss</h3>
+</a>
+
+<a href="/gs/mountainmaze" class="game">
+<img src="https://as2.ftcdn.net/v2/jpg/03/11/66/53/1000_F_311665375_eTL5UT4EN1cc915ubUEZ1o5p3hMa6Twa.jpg">
+<h3>Mountain Maze</h3>
+</a>
+  
+<a href="/gs/ninjavsevilcorp" class="game">
+<img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,f=auto/f7da9e8a0a29a69878dec823d844140d.png">
+<h3>Ninja VS Evil Corp</h3>
+</a>
+  
+<a href="/gs/offlineparadise" class="game">
+<img src="https://gameonline.co.id/thumbs/offline-paradise-gea.jpeg">
+<h3>Offline Paradise</h3>
+</a>
+  
+<a href="/gs/radiusraid" class="game">
+<img src="https://img.kbhgames.com/2021/11/Radius-Raid-1.jpg">
+<h3>Radius Raid</h3>
+</a>
+
+<a href="/gs/retropingpong" class="game">
+<img src="https://www.cokogames.com/wp-content/uploads/2023/09/retro-ping-pong.jpg">
+<h3>Retro Ping Pong</h3>
+</a>
+  
+<a href="/gs/rollingforests" class="game">
+<img src="https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/5a/a6/a6/5aa6a6cb-adfc-fdc1-6c09-47ba714ca0bb/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg">
+<h3>Rolling Forests</h3>
+</a>
+  
+<a href="/gs/sandgame" class="game">
+<img src="https://play-lh.googleusercontent.com/_PYtjNVw6RuhlnI8lUvOLnGHaE-7CNddeqs1xisFyhWbTJaIW2-tEM5E1iAe6tUk8K4">
+<h3>Sand Game</h3>
+</a>
+  
+<a href="/gs/slope" class="game">
+<img src="https://taming-io.co/upload/imgs/slope-game-logo1.png">
+<h3>Slope</h3>
+</a>
+  
+<a href="/gs/spacebarclicker" class="game">
+<img src="https://taming-io.co/upload/imgs/spacebar-clicker-logo.jpg">
+<h3>Spacebar Clicker</h3>
+</a>
+  
+<a href="/gs/stack" class="game">
+<img src="https://play-lh.googleusercontent.com/WRlGQXa9Pav7YZPW-P5X8PAga0lF2T1BAzmasxB9qV_1_om5DgmMbxOFo2SK8ZN5K5k">
+<h3>Stack</h3>
+</a>
+  
+<a href="/gs/stickmanhook" class="game">
+<img src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,f=auto/99e090d154caf30f3625df7e456d5984.png">
+<h3>Stickman Hook</h3>
+</a>
+
+<a href="/gs/supermario64" class="game">
+<img src="https://assets1.ignimgs.com/2019/05/31/mario-64---button-1559263987447.jpg">
+<h3>Super Mario 64</h3>
+</a>
+  
+<a href="/forms/request-a-game" class="game">
+<img src="https://www.freeiconspng.com/thumbs/plus-icon/plus-icon-black-2.png">
+<h3>Request a Game</h3>
+</a>
+
+<a href="/forms/report-a-game" class="game">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5GIyq2xN4ECvflmmvn04EEDWMIeY3r9X_7lMBRN6q6Q&s">
+<h3>Report a Game</h3>
+</a>
+  
+
+<script>
+// JavaScript code to handle the click event
+document.getElementById('1v1lol').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default behavior of the link
+
+    // Show the message
+    var confirmation = confirm("1v1.LOL is only available via download. If you have already downloaded it, copy and paste this 'file:///media/archive/1v1-lol.zip/1v1.lol-main/1v1.lol/index.htm' into your browser. If you haven't downloaded it yet, click OK and the download will automatically start.");
+    
+    // If the user clicks "OK" (proceed)
+    if (confirmation) {
+        // Start downloading the file
+        var link = document.createElement('a');
+        link.href = "/gs/1v1-lol.zip";
+        link.download = "1v1-lol.zip";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+});
+</script>
+
+
+
+
+</body>
+</html>
