@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Games - Project Neutron</title>
+<title>Movies - Project Neutron</title>
 <style>
 body {
 margin: 0;
@@ -162,173 +162,7 @@ dropdown.classList.toggle('open');
 </head>
 <body>
 
-<!-- Leaderboard section -->
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Games on Project Neutron</title>
-<style>
-/* Import Lexend Bold font */
-@import url('https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap');
 
-/* Global styles */
-body {
-    margin: 0; /* Remove default margin */
-    font-family: 'Lexend', sans-serif; /* Apply Lexend Bold font */
-}
-
-/* Style for the container */
-.container {
-    width: 90vw;
-    margin: auto;
-    padding: 10px;
-    margin-top: 6%; /* Adjust the margin-top to move the leaderboard down */
-}
-
-/* Style for the leaderboard */
-.leaderboard {
-    top: 11%; /* Change this value to adjust the distance from the top */
-    background-color: #34495e; /* Light gray background */
-    border-radius: 10px; /* Rounded corners */
-    overflow: hidden; /* Ensure rounded corners are applied */
-    padding: 10px; /* Add some padding */
-    text-align: center; /* Center text horizontally */
-    height: 43vh;
-    font-family: 'Lexend', sans-serif; /* Apply Lexend Bold font */
-}
-
-/* Style for the big rectangle */
-.big-rectangle {
-    background-color: #2c3e50; /* Gray background color */
-    border-radius: 10px; /* Rounded corners */
-    color: #fff; /* Text color */
-    padding: 20px 0; /* Add padding */
-    font-weight: bold; /* Make the text bold */
-}
-
-/* Style for the countdown text */
-.countdown-text {
-    font-size: 12px; /* Smaller font size */
-    font-weight: bold; /* Make the text bold */
-}
-
-/* Style for the boxes container */
-.boxes-container {
-    display: flex; /* Use flexbox to arrange boxes */
-    justify-content: space-between; /* Align boxes with space between them */
-    margin-top: 20px; /* Add margin to separate from the leaderboard */
-}
-
-/* Style for each box */
-.individual-box-text {
-    flex: 0 0 calc(33.333% - 2%); /* Each box takes one-third of the available space minus margin */
-    background-color: #2c3e50; /* Light gray background */
-    border-radius: 10px; /* Rounded corners */
-    margin: 0 1%; /* 1% margin between boxes */
-    padding: 10px; /* Add padding */
-    box-sizing: border-box; /* Include padding in the width */
-    text-align: center;
-    color: #fff;
-    font-weight: bold; /* Make the text bold */
-}
-
-/* Style for the smaller gray text */
-.small-text {
-    font-size: 12px; /* Smaller font size */
-    color: #f8f8f8; /* Gray text color */
-    text-align: center; /* Center text horizontally */
-    margin-top: 5px; /* Add margin on top */
-    font-weight: bold; /* Make the text bold */
-}
-
-/* Style for the Submit Score button */
-.submit-button {
-    display: block; /* Make the button a block element */
-    background-color: #e74c3c; /* Red button color */
-    color: #fff; /* Text color */
-    text-decoration: none; /* Remove default underline */
-    border-radius: 10px; /* Rounded corners */
-    padding: 15px 0; /* Add padding */
-    margin-top: 20px; /* Add margin on top */
-    font-size: 18px; /* Font size */
-    transition: background-color 0.3s ease; /* Smooth transition for background color */
-    font-weight: bold; /* Make the text bold */
-}
-
-/* Hover effect for the button */
-.submit-button:hover {
-    background-color: #2980b9; /* Darker blue background color on hover */
-}
-
-
-
-</style>
-</head>
-<body>
-  <div class="container">
-    <!-- Leaderboard container -->
-    <div class="leaderboard">
-      <!-- Big rectangle -->
-      <div class="big-rectangle">
-        <div class="big-rectangle-text">Leaderboard</div>
-        <div class="big-rectangle-text" style="font-size: 16px;">Current Game: It's Raining Boxes</div>
-        <div class="big-rectangle-text countdown-text">Ends in: <span id="countdown">...</span></div>
-      </div>
-      
-      <!-- Boxes container -->
-      <div class="boxes-container">
-        <!-- Box 1 -->
-        <div class="individual-box-text">
-          <div class="small-text">Score: 602</div>
-          Because Rentendofr
-          <div class="small-text">1st Place</div>
-        </div>
-        <!-- Box 2 -->
-        <div class="individual-box-text">
-          <div class="small-text">Score: 594</div>
-          Chaz Greeder
-          <div class="small-text">2nd Place</div>
-        </div>
-        <!-- Box 3 -->
-        <div class="individual-box-text">
-          <div class="small-text">Score: 443</div>
-          Because Rentendofr
-          <div class="small-text">3rd Place</div>
-        </div>
-      </div>
-      
-      <!-- Smaller gray text -->
-<div class="small-text">Ends 05/01/2024. <a href="https://algebrafornoobs.site/docs/contest/terms-and-conditions" target="_blank" style="color: white;">Terms and Conditions</a> apply.</div>
-
-
-      
-      <!-- Submit Score button -->
-<a href="/forms/submit-score" class="submit-button">Submit Score</a>
-    </div>
-
-  </div>
-
-  <script>
-    // Calculate the countdown timer
-    var countdownDate = new Date("2024-05-01T09:00:00").getTime();
-    var countdown = setInterval(function() {
-      var now = new Date().getTime();
-      var distance = countdownDate - now;
-      var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-      document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-      if (distance < 0) {
-        clearInterval(countdown);
-        document.getElementById("countdown").innerHTML = "EXPIRED";
-      }
-    }, 1000);
-  </script>
-</body>
-</html>
 
 <!-- Games section -->
 <div>
@@ -416,7 +250,7 @@ transition: transform 0.3s ease; /* Hover animation */
 
 .game img {
   width: auto;
-  height: 240px; /* Adjust the height to maintain a 27:40 aspect ratio */
+  height: auto; /* Adjust the height to maintain a 27:40 aspect ratio */
   max-width: 100%;
 }
 
@@ -445,19 +279,19 @@ margin-top: 6%;
 </head>
 <body>
 
-<a href="#" class="game" id="1v1lol">
+<a href="/mov/american-psycho" class="game">
 <img src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTp0qlAoWcOOswIkL_qpjYzJqCCDmWXiBzCXiqbE43Obo8c0Z-s">
-<h3>1v1.LOL</h3>
+<h3>American Psycho</h3>
 </a>
 
-<a href="/gs/2048" class="game">
+<a href="/mov/black-adam" class="game">
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/18/2048_logo.svg/1200px-2048_logo.svg.png">
-<h3>2048</h3>
+<h3>Black Adam</h3>
 </a>
 
-<a href="/gs/agariolite" class="game">
+<a href="/mov/cocaine-bear" class="game">
 <img src="https://downloadr2.apkmirror.com/wp-content/uploads/2021/07/18/6102a3138c854.png">
-<h3>Agar.io Lite</h3>
+<h3>Cocaine Bear</h3>
 </a>
 
 <a href="/gs/bit-planes" class="game">
