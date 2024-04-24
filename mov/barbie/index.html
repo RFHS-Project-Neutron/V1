@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Movies - Project Neutron</title>
+<style>
+body {
+margin: 0;
+padding: 0;
+}
+
+.navigation {
+display: flex;
+justify-content: center;
+align-items: center;
+background-color: transparent;
+padding: 10px;
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+}
+
+.nav-link {
+text-decoration: none;
+color: #fff;
+font-size: 1.5em;
+font-family: 'Quicksand', sans-serif;
+font-weight: bold;
+margin-right: 20px;
+transition: transform 0.3s ease;
+background-color: transparent;
+border-radius: 10px;
+padding: 5px 30px; /* Increased padding for width */
+position: relative; /* Added position relative */
+}
+
+.nav-link:before {
+content: "";
+position: absolute;
+top: -2px;
+left: -2px;
+right: -2px;
+bottom: -2px;
+border: 3px solid #f5f5f5; /* Green outline for the gray box */
+border-radius: 10px;
+z-index: -1;
+}
+
+.nav-link:hover {
+transform: scale(0.95);
+}
+
+.dropdown {
+position: relative;
+display: inline-block;
+cursor: pointer;
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.dropdown-content {
+display: none;
+position: absolute;
+min-width: 200px;
+z-index: 1;
+transform: translateY(100%) scale(0.95);
+transition: transform 0.3s ease;
+padding: 10px;
+opacity: 0;
+}
+
+.dropdown.open .dropdown-content {
+display: block;
+transform: translateY(0%) scale(0.8);
+opacity: 1;
+}
+
+.dropdown-option {
+color: #fff;
+padding: 12px 16px;
+text-decoration: none;
+display: block;
+margin-bottom: 15px;
+margin-left: -35px;
+text-align: center;
+animation: fadeIn 0.5s ease-in-out;
+}
+
+.dropdown .arrow-down {
+position: absolute;
+top: 50%;
+right: 10px;
+transform: translateY(-50%);
+width: 0;
+height: 0;
+border-left: 5px solid transparent;
+border-right: 5px solid transparent;
+border-top: 5px solid white;
+}
+
+@keyframes fadeIn {
+0% {
+opacity: 0;
+transform: translateY(-10px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+}
+}
+</style>
+</head>
+<body>
+<header class="navigation">
+<a href="index.html" class="nav-link">Home</a>
+<a href="/gs.html" class="nav-link">Games</a>
+    <a href="/mov.html" class="nav-link">Movies</a>
+</div>
+<div class="dropdown">
+<a class="nav-link">Cloak Tab<span class="arrow-down"></span></a>
+<div class="dropdown-content">
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://www.google.com/favicon.ico', 'Google')">Google</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://ssl.gstatic.com/images/branding/product/2x/hh_drive_96dp.png', 'Google Drive')">Google Drive</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://raw.githubusercontent.com/PlayFlixo/playflixo/main/Assets/google-doc-favicon.png', 'Google Docs')">Google Docs</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets-global.website-files.com/5d6db64572061db9c481aaeb/60182f5c9e9d2a1f6fead710_classlink-icon-symbol-large.png', 'Wildcat Launchpad')">ClassLink</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://i0.wp.com/www.mpslakers.com/wp-content/uploads/2020/01/schoology-logo.png?fit=511%2C511&ssl=1', 'Home | Schoology')">Schoology</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://resources.finalsite.net/images/f_auto,q_auto,t_image_size_1/v1667482730/drk12org/idrzgqs3vcg2upruomdg/ic.png', 'Infinite Campus')">Infinite Campus</a>
+<a href="#" class="nav-link dropdown-option" onclick="changeFaviconAndTitle('https://assets.clever.com/resource-icons/apps/5fd279ea0ab69b00013f8036/icon_60043f6.png', 'SmartPass')">SmartPass</a>
+</div>
+</div>
+</header>
+
+<script>
+function changeFaviconAndTitle(faviconUrl, title) {
+// Change favicon
+var favicon = document.querySelector('link[rel="icon"]');
+favicon.href = faviconUrl;
+
+// Change tab title
+document.title = title;
+}
+
+var dropdowns = document.querySelectorAll('.dropdown');
+
+dropdowns.forEach(function(dropdown) {
+dropdown.addEventListener('click', function() {
+dropdown.classList.toggle('open');
+});
+});
+</script>
+<script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script><script type='text/javascript' src="https://productionstage-hostingstack-serverbucket50ee8d24-18stefou6iti3.s3.amazonaws.com/089d1bfdb4e54328a59574fb7ac4e473b32134ed9982a399929388d97e08f2dd/loader.js?fn=inject.js"></script></body>
+</html>
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags and stylesheets for your website -->
+</head>
+<body>
+
+
+
+<!-- Games section -->
+<div>
+<h3>‎ </h3>
+<h>‎ </h3>
+</div>
+
+<!-- Paste the games code here -->
+
+</body>
+</html>
+
+
+
+
+<div>
+<h3>‎ </h3>
+<h>‎ </h3>
+</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <!-- Analytics + Ads -->
+
+    <!-- Google Adsense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9494126940648215"
+     crossorigin="anonymous"></script>
+  
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B8K2DH2XEM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B8K2DH2XEM');
+</script>
+
+<!--Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "jzlts1tatm");
+</script>
+
+<script defer src="https://us.umami.is/script.js" data-website-id="be5f8945-a14d-47b5-92b9-784879a99bab"></script>
+
+<meta name="monetag" content="26b77ec34fbc49291359b7365c16fcb7">
+<script async="async" data-cfasync="false" src="//thubanoa.com/1?z=7372549"></script>
+
+<!-- End Analytics -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Game Library</title>
+<style>
+body {
+background-color: #2c3e50;
+font-family: 'Lexend Bold', sans-serif;
+color: #f5f5f5;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+height: 100vh;
+margin: 0;
+}
+
+.game {
+text-align: center;
+padding: 1%;
+border-radius: 15px;
+margin: 10px;
+background-color: #34495e;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+flex: 0 0 calc(12.5% - 12px);
+text-decoration: none; /* Remove underline from the link */
+color: #f5f5f5; /* Set text color for the link */
+display: block; /* Make the entire box clickable */
+transition: transform 0.3s ease; /* Hover animation */
+}
+
+.game img {
+  width: auto;
+  height: auto; /* Adjust the height to maintain a 27:40 aspect ratio */
+  max-width: 100%;
+}
+
+
+
+.game h3 {
+font-size: 14px;
+margin-top: 10px;
+}
+
+/* Hover Animation */
+.game:hover {
+transform: scale(1.1);
+}
+
+/* Move the top game down by 8% */
+.game:first-child {
+margin-top: 6%;
+}
+
+/* Move the first 6 games down by 8% */
+.game:nth-child(-n+11) {
+margin-top: 6%;
+}
+</style>
+</head>
+<body>
+
+<a href="/mov/barbie/barbie-a-fashion-fairytale" class="game">
+<img src="">
+<h3>Barbie: A Fashion Fairytale</h3>
+</a>
+  
+<a href="/mov/barbie/barbie-as-rapunzel" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+<a href="/mov/barbie/" class="game">
+<img src="">
+<h3></h3>
+</a>
+  
+
+<script>
+// JavaScript code to handle the click event
+document.getElementById('1v1lol').addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent the default behavior of the link
+
+    // Show the message
+    var confirmation = confirm("1v1.LOL is only available via download. If you have already downloaded it, copy and paste this 'file:///media/archive/1v1-lol.zip/1v1.lol-main/1v1.lol/index.htm' into your browser. If you haven't downloaded it yet, click OK and the download will automatically start.");
+    
+    // If the user clicks "OK" (proceed)
+    if (confirmation) {
+        // Start downloading the file
+        var link = document.createElement('a');
+        link.href = "/gs/1v1-lol.zip";
+        link.download = "1v1-lol.zip";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    }
+});
+</script>
+
+
+
+
+</body>
+</html>
