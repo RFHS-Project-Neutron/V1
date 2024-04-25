@@ -250,6 +250,12 @@ display: block; /* Make the entire box clickable */
 transition: transform 0.3s ease; /* Hover animation */
 }
 
+/* Move the first 6 games down by 20% */
+.game:nth-child(-n+6) {
+    margin-top: 20%;
+}
+
+
 .game img {
   width: auto;
   height: auto; /* Adjust the height to maintain a 27:40 aspect ratio */
