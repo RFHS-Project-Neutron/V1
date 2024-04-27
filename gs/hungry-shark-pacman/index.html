@@ -1,1 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel='stylesheet' href='./styles/style.css'>
+  <script src="./scripts/app.js" charset="utf-8"></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Reggae+One&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/png"
+    href="https://slack-imgs.com/?c=1&o1=gu&url=https%3A%2F%2Fa.slack-edge.com%2Fproduction-standard-emoji-assets%2F13.0%2Fapple-small%2F1f988%402x.png" />
+  <title>HUNGRY SHARK</title>
+</head>
+
+<audio  id='enter-audio' src='./assets/Finding Nemo_ Shark Scene [60fps,IMAX] Dory and Marlin meeting Shark  Scene (128 kbps)-[AudioTrimmer.com].mp3' ></audio>
+
+<audio id= 'game-audio' src="./assets/The Little Mermaid - Under the Sea (from The Little Mermaid) (Official Video)-[AudioTrimmer.com].mp3" ></audio>
+
+<body>
+  <div class="overlay">
+    <div class="layer"></div>
+    <div class="start-box">
+      <div class="start-page-image">
+        <button id='enter-btn'> PRESS TO PLAY</button>
+        <h3> CREDIT(S): <span class='credit-count'> 3</span> </h3>
+      </div>
+    </div>
+  </div>
+
+
+  <div class='win-overlay'>
+    <img id="win=left-img" src="./assets/dancing shark.gif" >
+    <div class='win-message'>
+      <h2> <span id=lose> DONE YOU WIN! </span> <br> <br> YOUR SCORE WAS    <span id='score2'>00</span> </h2>
+      <button class='reset-btn'>CLICK TO PLAY AGAIN</button>
+    </div>
+    <img id="win=left-img" src="./assets/Dancing babyshark png.gif" >
+  </div>
+
+
+  <div class='game-container'>
+    <header class='header'>
+      <button class='how-to-btn'> HOW TO PLAY</button>
+      <section>
+
+        <h2>SCORE:<span id='score'>00</span> </h2>
+        <div class='lives-container'>
+
+          <img class="hearts" src="./assets/heart.gif"
+          src="">
+          <span id='lives-counter'>3</span>
+        </div>
+
+      </section>
+      <button class='mute-btn'> MUTE </button>
+    </header>
+    <div class="game-grid"></div>
+  </div>
+
+</body>
+
+</html>
+
+
+
+
+ <!DOCTYPE html>
+<html>
+<head>
+		<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-B8K2DH2XEM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-B8K2DH2XEM');
+</script>
+
+<!--Microsoft Clarity -->
+<script type="text/javascript">
+(function(c,l,a,r,i,t,y){
+c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "jzlts1tatm");
+</script>
+
+<script defer src="https://us.umami.is/script.js" data-website-id="be5f8945-a14d-47b5-92b9-784879a99bab"></script>
+<title>Watermark by Flixo</title>
+<style>
+/* Style for the watermark */
+.watermark {
+position: fixed;
+bottom: 10px;
+left: 5px;
+z-index: 9999;
+font-family: 'Lexend Bold', Arial, sans-serif;
+font-size: 14px;
+color: #FFF;
+opacity: 0.75;
+cursor: pointer;
+text-decoration: none;
+font-weight: bold;
+background-color: #2c3e50;
+padding: 5px 10px;
+border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<!-- Watermark -->
+<a class="watermark" href="https://project-neutron.site" target="_blank">Made by Project Neutron</a>
+</body>
+</html>
