@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Episode Library</title>
+    <style>
+        body {
+            font-family: 'Lexend Bold', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://m.media-amazon.com/images/S/pv-target-images/f44e0b309dd4d6285099343fd6b27f1dde7b0b8db6f25cc9e42f6d7a77363f04._SX1080_FMjpg_.jpg');
+            background-size: cover;
+            background-attachment: fixed; /* Background image stays in place while scrolling */
+            color: white;
+        }
+        .container {
+            max-width: 800px;
+            margin: 10% auto 0; /* 10% down from the top, centered horizontally */
+            padding: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.85);
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.85);
+        }
+        h1 {
+            text-align: center;
+        }
+        .season-buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .season-button {
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .season-button:hover {
+            background-color: rgba(255, 255, 255, 0.5);
+        }
+        .season {
+            margin-bottom: 30px;
+        }
+        .episode {
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .episode-duration {
+            position: absolute;
+            top: -15px;
+            right: 5px;
+        }
+        h2, h3 {
+            margin-top: 0;
+        }
+        p {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Episode Library</h1>
+    
+    <div class="season-buttons">
+        <button class="season-button" onclick="scrollToSeason('season1')">Season 1</button>
+        <button class="season-button" onclick="scrollToSeason('season2')">Season 2</button>
+        <!-- Add more buttons for additional seasons -->
+    </div>
+
+    <div id="season1" class="season">
+        <h2>Season 1</h2>
+        <div class="episode">
+            <h3>S1 E1 - Episode Title</h3>
+            <p>Episode Description</p>
+            <p class="episode-duration">Episode Duration</p>
+        </div>
+        
+        <div class="episode">
+            <h3>S1 E2 - Episode Title</h3>
+            <p>Episode Description</p>
+            <p class="episode-duration">Episode Duration</p>
+        </div>
+    </div>
+
+    <div id="season2" class="season">
+        <h2>Season 2</h2>
+        <div class="episode">
+            <h3>S2 E1 - Episode Title</h3>
+            <p>Episode Description</p>
+            <p class="episode-duration">Episode Duration</p>
+        </div>
+        
+        <div class="episode">
+            <h3>S2 E2 - Episode Title</h3>
+            <p>Episode Description</p>
+            <p class="episode-duration">Episode Duration</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function scrollToSeason(seasonId) {
+        const seasonElement = document.getElementById(seasonId);
+        seasonElement.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
