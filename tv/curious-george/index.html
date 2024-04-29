@@ -51,18 +51,41 @@
             padding: 10px;
             margin-bottom: 10px;
             position: relative;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
         }
+        .episode:hover {
+            transform: scale(1.05);
+        }
+        .episode a {
+            text-decoration: none;
+            color: white;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit; /* Inherit the color from the parent element */
+        }
+
         .episode-duration {
             position: absolute;
             top: -15px;
             right: 5px;
+            color: white;
         }
         h2, h3 {
             margin-top: 0;
+            color: white;
         }
         p {
             margin-bottom: 5px;
+            color: white;
         }
+
+        .season-button:not(:last-child) {
+            margin-bottom: 20px; /* Adjust the margin as needed */
+        }
+
     </style>
 </head>
 <body>
@@ -73,38 +96,176 @@
     <div class="season-buttons">
         <button class="season-button" onclick="scrollToSeason('season1')">Season 1</button>
         <button class="season-button" onclick="scrollToSeason('season2')">Season 2</button>
-        <!-- Add more buttons for additional seasons -->
+        <button class="season-button" onclick="scrollToSeason('season3')">Season 3</button>
+        <button class="season-button" onclick="scrollToSeason('season4')">Season 4</button>
+        <button class="season-button" onclick="scrollToSeason('season5')">Season 5</button>
+        <button class="season-button" onclick="scrollToSeason('season6')">Season 6</button>
+        <button class="season-button" onclick="scrollToSeason('season7')">Season 7</button>
+        <button class="season-button" onclick="scrollToSeason('season8')">Season 8</button>
     </div>
 
     <div id="season1" class="season">
         <h2>Season 1</h2>
-        <div class="episode">
-            <h3>S1 E1 - Episode Title</h3>
-            <p>Episode Description</p>
-            <p class="episode-duration">Episode Duration</p>
-        </div>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S1 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
         
-        <div class="episode">
-            <h3>S1 E2 - Episode Title</h3>
-            <p>Episode Description</p>
-            <p class="episode-duration">Episode Duration</p>
-        </div>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S1 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 1 -->
     </div>
 
     <div id="season2" class="season">
         <h2>Season 2</h2>
-        <div class="episode">
-            <h3>S2 E1 - Episode Title</h3>
-            <p>Episode Description</p>
-            <p class="episode-duration">Episode Duration</p>
-        </div>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S2 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
         
-        <div class="episode">
-            <h3>S2 E2 - Episode Title</h3>
-            <p>Episode Description</p>
-            <p class="episode-duration">Episode Duration</p>
-        </div>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S2 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 2 -->
     </div>
+
+    <!-- Add more seasons similarly -->
+    <!-- Add more seasons similarly -->
+    <div id="season3" class="season">
+        <h2>Season 3</h2>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S3 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S3 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 3 -->
+    </div>
+
+    <div id="season4" class="season">
+        <h2>Season 4</h2>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S4 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S4 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 4 -->
+    </div>
+
+    <div id="season5" class="season">
+        <h2>Season 5</h2>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S5 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S5 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 5 -->
+    </div>
+
+    <div id="season6" class="season">
+        <h2>Season 6</h2>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S6 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S6 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 6 -->
+    </div>
+
+    <div id="season7" class="season">
+        <h2>Season 7</h2>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S7 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S7 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 7 -->
+    </div>
+
+    <div id="season8" class="season">
+        <h2>Season 8</h2>
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S8 E1 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        
+        <a href="https://example.com">
+            <div class="episode">
+                <h3>S8 E2 - Episode Title</h3>
+                <p>Episode Description</p>
+                <p class="episode-duration">Episode Duration</p>
+            </div>
+        </a>
+        <!-- Add more episodes for Season 8 -->
+    </div>
+
 </div>
 
 <script>
