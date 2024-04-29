@@ -414,7 +414,9 @@ body {
     padding: 0;
     font-family: 'Lexend', sans-serif;
     color: white; /* Set text color to white */
+    overflow: hidden; /* Disable scrolling */
 }
+
 
 ul {
     list-style-type: none;
@@ -429,7 +431,15 @@ li {
     color: white; /* Set text color to white for sections */
 }
 
-/* Center text vertically in the announcements box */
+/* Style for the box around announcements */
+.announcements-box .box {
+    border: 2px solid white;
+    padding: 20px;
+    text-align: center;
+    width: 60%; /* Make the box wider */
+}
+
+/* Adjust margin to move the box to the left */
 .announcements-box {
     display: flex;
     justify-content: center;
@@ -437,16 +447,10 @@ li {
     height: 50vh; /* Center vertically */
     margin-top: 25vh; /* Move down 25% from the top of the page */
     width: 40vw;
-    margin-right: 5vw;
+    margin-right: -20vw; /* Decreased right margin further */
 }
 
-  /* Style for the box around announcements */
-.announcements-box .box {
-    border: 2px solid white;
-    padding: 20px;
-    text-align: center;
-    width: 80%; /* Make the box wider */
-}
+
 
 /* Make Project Neutron text slightly bigger and center it */
 #project-neutron {
