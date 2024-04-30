@@ -417,80 +417,70 @@ body {
     overflow: hidden; /* Disable scrolling */
 }
 
-
-ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-li {
-    margin-bottom: 10px;
-}
-
-.left-section, .right-section {
-    color: white; /* Set text color to white for sections */
-}
-
-/* Style for the box around announcements */
-.announcements-box .box {
-    border: 2px solid white;
-    padding: 20px;
-    text-align: center;
-    width: 60%; /* Make the box wider */
-}
-
-/* Adjust margin to move the box to the left */
-.announcements-box {
+.container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 50vh; /* Center vertically */
-    margin-top: 25vh; /* Move down 25% from the top of the page */
-    width: 40vw;
-    margin-right: -20vw; /* Decreased right margin further */
+    height: 100vh;
 }
 
-
-
-/* Make Project Neutron text slightly bigger and center it */
 #project-neutron {
     font-size: 56px; /* Adjusted font size */
     text-align: center; /* Center text */
+    margin-bottom: 20px; /* Added margin bottom */
 }
 
-/* Center clock and date horizontally */
-#clock, #date {
+#date {
+    font-size: 24px;
     text-align: center;
 }
 
+#clock {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px; /* Added margin bottom */
+}
+
+.announcements-box {
+    margin-top: 20px; /* Increased margin top to move the box up */
+    border: 2px solid white;
+    padding: 30px 20px; /* Adjusted padding */
+    text-align: center; /* Center the text */
+    width: 80%; /* Make the box wider */
+}
+
+.announcements-box ul {
+    list-style-type: none; /* Remove bullets from list items */
+    text-align: center; /* Center the list items horizontally */
+}
+
+.announcements-box li {
+    display: inline-block; /* Make the list items inline-block */
+    text-align: center; /* Center the text within each list item */
+}
+
+
+
+
 @media only screen and (max-width: 768px) {
-    .left-section, .right-section {
-        width: 100%;
+    .announcements-box {
+        width: 100%; /* Adjusted width for smaller screens */
     }
 }
 </style>
 </head>
 <body>
-<div class="left-section" style="width: 50%; float: left;">
-  <div style="text-align: center; margin-top: 35%;">
+<div class="container">
     <h1 id="project-neutron">Project Neutron</h1>
-    <div id="date" style="font-size: 24px;"></div>
-    <div id="clock" style="font-size: 36px; margin-top: 20px;"></div>
-  </div>
-</div>
-<div class="right-section" style="width: 50%; float: right;">
-  <div style="width: 40%; margin: auto;"> <!-- Adjusted margin -->
+    <div id="date"></div>
+    <div id="clock"></div>
     <div class="announcements-box">
-      <div class="box">
         <h2>Announcements</h2>
         <ul>
-          <li>Bit Planes ground is still broken because anton's source code isn't exactly public</li>
-          <li>Announcement 2</li>
-          <li>Announcement 3</li>
+            <li>Bit Planes ground is still broken because anton's source code isn't exactly public</li>
         </ul>
-      </div>
     </div>
-  </div>
 </div>
 
 <script>
@@ -511,6 +501,5 @@ setInterval(updateClock, 1000);
 // Initial call to display clock
 updateClock();
 </script>
-
 </body>
 </html>
