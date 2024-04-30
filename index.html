@@ -46,8 +46,26 @@ border: 0px solid #F5F5F5;
 background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s");
 background-repeat: no-repeat;
 background-size: cover;
-
 }
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.github-link img {
+    width: 35px;
+    height: 35px;
+}
+
+.github-link {
+    position: fixed;
+    bottom: 4px;
+    left: 5px;
+    z-index: 9999; /* Ensure it's above other content */
+}
+
 
 ::-webkit-scrollbar {
 width: 8px;
@@ -125,6 +143,10 @@ opacity: 50;
 </style>
 <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 <link rel="icon" href="Image Link">
+
+    <a href="https://github.com/RFHS-Project-Neutron/V1" class="github-link">
+        <img src="./assets/images/github-logo-regular-white.png" alt="GitHub">
+    </a>
 
 <script>
 // Replace this array with the actual IP addresses you want to ban
