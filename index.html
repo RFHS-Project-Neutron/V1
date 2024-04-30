@@ -397,3 +397,109 @@ window.addEventListener('resize', function() {
 
 </body>
 </html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Neutron</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@700&display=swap" rel="stylesheet">
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lexend', sans-serif;
+    color: white; /* Set text color to white */
+    overflow: hidden; /* Disable scrolling */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#project-neutron {
+    font-size: 56px; /* Adjusted font size */
+    text-align: center; /* Center text */
+    margin-bottom: 20px; /* Added margin bottom */
+}
+
+#date {
+    font-size: 24px;
+    text-align: center;
+}
+
+#clock {
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 20px; /* Added margin bottom */
+}
+
+.announcements-box {
+    margin-top: 20px; /* Increased margin top to move the box up */
+    border: 2px solid white;
+    padding: 30px 20px; /* Adjusted padding */
+    text-align: center; /* Center the text */
+    width: 80%; /* Make the box wider */
+}
+
+.announcements-box ul {
+    list-style-type: none; /* Remove bullets from list items */
+    text-align: center; /* Center the list items horizontally */
+}
+
+.announcements-box li {
+    display: inline-block; /* Make the list items inline-block */
+    text-align: center; /* Center the text within each list item */
+}
+
+
+
+
+@media only screen and (max-width: 768px) {
+    .announcements-box {
+        width: 100%; /* Adjusted width for smaller screens */
+    }
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <h1 id="project-neutron">Project Neutron</h1>
+    <div id="date"></div>
+    <div id="clock"></div>
+    <div class="announcements-box">
+        <h2>Announcements</h2>
+        <ul>
+            <li>Bit Planes ground is still broken because anton's source code isn't exactly public</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+function updateClock() {
+    var now = new Date();
+    var hours = now.getHours();
+    var minutes = now.getMinutes();
+    var seconds = now.getSeconds();
+    var timeString = hours.toString().padStart(2, '0') + ':' + minutes.toString().padStart(2, '0') + ':' + seconds.toString().padStart(2, '0');
+    document.getElementById('clock').textContent = timeString;
+    var dateString = now.toDateString();
+    document.getElementById('date').textContent = dateString;
+}
+
+// Update clock every second
+setInterval(updateClock, 1000);
+
+// Initial call to display clock
+updateClock();
+</script>
+</body>
+</html>
