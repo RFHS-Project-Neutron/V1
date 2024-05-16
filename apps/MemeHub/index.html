@@ -378,13 +378,37 @@ var DownTextTXT = document.getElementById("TakenDownVidText")
         return;
       }
 
-      const videoElement = document.createElement("video");
-      videoElement.setAttribute("controls", true);
-      videoElement.setAttribute("autoplay", true);
-      videoElement.setAttribute("loop", true);
-      if ('controlsList' in videoElement) {
-        videoElement.controlsList.add('nodownload');
-      }
+const videoElement = document.createElement("video");
+videoElement.setAttribute("controls", true);
+videoElement.setAttribute("autoplay", true);
+videoElement.setAttribute("loop", true); // Add loop attribute to enable looping
+if ('controlsList' in videoElement) {
+  videoElement.controlsList.add('nodownload');
+}
+
+// Add event listener for spacebar keypress
+document.addEventListener('keydown', function(event) {
+  if (event.keyCode === 32) { // Spacebar keycode
+    if (videoElement.paused) {
+      videoElement.play(); // Play if paused
+    } else {
+      videoElement.pause(); // Pause if playing
+    }
+  }
+});
+
+// Add event listener for click on video
+videoElement.addEventListener('click', function() {
+  if (videoElement.paused) {
+    videoElement.play(); // Play if paused
+  } else {
+    videoElement.pause(); // Pause if playing
+  }
+});
+
+// Append video element to the document body or any desired container
+document.body.appendChild(videoElement);
+
 
       if(index===0) {
         DownTextTXT.style.display = "block"
