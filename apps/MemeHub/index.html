@@ -381,6 +381,7 @@ var DownTextTXT = document.getElementById("TakenDownVidText")
       const videoElement = document.createElement("video");
       videoElement.setAttribute("controls", true);
       videoElement.setAttribute("autoplay", true);
+      videoElement.setAttribute("loop", true);
       if ('controlsList' in videoElement) {
         videoElement.controlsList.add('nodownload');
       }
