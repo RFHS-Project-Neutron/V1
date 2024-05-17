@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Project Neutron</title>
+    <link rel="icon" type="image/png" href="icon.png">
+    <style>
+        .corner {
+            width: 60px;
+            display: inline-block;
+            position: absolute;
+            margin-left: 40px;
+            margin-top: 0px;
+            top: 0;
+        }
+        
+        .header {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        body {
+            background-color: black;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        img {
+            width: 80%;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 0px;
+            margin-top: 0px;
+        }
+
+        #clock {
+            font-size: 40px;
+            text-align: center;
+            margin: 0px;
+            color: #F6C324;
+            font-family: sans-serif;
+            text-shadow: 0 0 20px #F6C324;
+            border: 3px solid #F6C324;
+            border-radius: 15px;
+            width: 35%;
+            box-shadow: 0 0 5px #F6C324;
+        }
+
+        hr {
+            color: white;
+            border: 2px solid white;
+            width: 25%;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            width: 150px;
+            height: 60px;
+            color: white;
+            font-size: 30px;
+            line-height: 60px;
+            text-align: center;
+            margin: 0 20px;
+            margin-bottom: 0px;
+            cursor: pointer;
+            border-radius: 15px;
+            text-shadow: 0px 0px 30px white;
+            position: relative;
+            font-family: sans-serif;
+            transition: font-size 0.3s;
+        }
+
+        .button:hover {
+            text-shadow: 0px 0px 30px #F6C324;
+            color: #F6C324;
+            font-size: 35px;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+            background-color: #333;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0px 0px 10px white;
+            margin-bottom:0px;
+        }
+
+        .button:hover .dropdown {
+            display: block;
+        }
+
+        .dropdown-content {
+            display: none;
+            padding: 10px;
+        }
+
+        .dropdown-content a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 5px 0;
+            cursor: pointer;
+            transition: font-size 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #555;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <a href="git hub page"><img class="corner" src="icon.png"></a>
+    
+    <div class="header">
+        <div class="button-container">
+            <div class="button"><b>Home</b></div>
+            <div class="button"><b>Games</b></div>
+            <div class="button"><b>Movies</b></div>
+            <div class="button" style="font-size: 30px;">
+                <b>Cloak Tab</b>
+                <div class="dropdown">
+                    <div class="dropdown-content">
+                        <a href="link.html">Google</a>
+                        <a href="link.html">Google Drive</a>
+                        <a href="link.html">Classlink</a>
+                        <a href="link.html">Schoology</a>
+                        <a href="link.html">Infinite Campus</a>
+                        <a href="link.html">SmartPass</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <img src="logo.png">
+    
+    <center><b><div id="clock"></div></b></center>
+    
+    <script>
+        function updateClock() {
+            var now = new Date();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+
+            var timeString = hours + ':' + minutes + ':' + seconds;
+            document.getElementById('clock').textContent = timeString;
+
+            setTimeout(updateClock, 1000);
+        }
+
+        updateClock();
+    </script>
+    
+</body>
+</html>
