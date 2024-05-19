@@ -69,9 +69,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="additional-text">
-            <p>This is a PN+ game. Please enter your code to access it.</p>
-        </div>
+        <div class="additional-text" id="cooldownMessage"></div>
         <div class="login-box">
             <form id="loginForm">
                 <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { checkCode(); return false; } return event.charCode >= 48 && event.charCode <= 57">
@@ -82,6 +80,10 @@
     </div>
 
     <script>
+        var consecutiveIncorrectAttempts = 0;
+        var cooldownDuration = 900000; // 15 minutes in milliseconds
+        var cooldownStartTime = 0;
+
         function checkCode() {
             var inputCode = document.getElementById("codeInput").value;
             var xhttp = new XMLHttpRequest();
@@ -91,12 +93,32 @@
                     if (validCodes.includes(inputCode)) {
                         window.location.href = "https://www.google.com";
                     } else {
+                        consecutiveIncorrectAttempts++;
                         document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                        if (consecutiveIncorrectAttempts >= 6) {
+                            startCooldown();
+                        }
                     }
                 }
             };
             xhttp.open("GET", "/test/codes.txt", true);
             xhttp.send();
+        }
+
+        function startCooldown() {
+            cooldownStartTime = Date.now();
+            var cooldownInterval = setInterval(function() {
+                var remainingTime = cooldownDuration - (Date.now() - cooldownStartTime);
+                if (remainingTime <= 0) {
+                    clearInterval(cooldownInterval);
+                    consecutiveIncorrectAttempts = 0;
+                    document.getElementById("cooldownMessage").innerText = "";
+                } else {
+                    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    document.getElementById("cooldownMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
         }
     </script>
 </body>
