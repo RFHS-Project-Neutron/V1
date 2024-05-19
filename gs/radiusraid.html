@@ -200,9 +200,19 @@ window.addEventListener("load",function(){document.documentElement.className+=" 
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
             z-index: 9999; /* Ensure container is in front */
             text-align: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+            z-index: 9998; /* Place overlay behind popup but in front of other content */
+            display: none; /* Initially hidden */
         }
 
         .login-box-wrapper {
@@ -250,6 +260,7 @@ window.addEventListener("load",function(){document.documentElement.className+=" 
     </style>
 </head>
 <body>
+    <div class="overlay" id="overlay"></div> <!-- Overlay element -->
     <div class="container" id="loginContainer">
         <div class="login-box-wrapper">
             <div class="additional-text" id="errorMessage"></div>
@@ -287,6 +298,7 @@ window.addEventListener("load",function(){document.documentElement.className+=" 
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
                         document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
+                        document.getElementById("overlay").style.display = "none"; // Hide the overlay
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
@@ -324,6 +336,8 @@ window.addEventListener("load",function(){document.documentElement.className+=" 
                     document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
                 }
             }, 1000);
+
+            document.getElementById("overlay").style.display = "block"; // Display the overlay
         }
     </script>
 </body>
