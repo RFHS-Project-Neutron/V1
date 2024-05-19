@@ -75,7 +75,7 @@
 
     <script>
         var consecutiveIncorrectAttempts = 0;
-        var errorDuration = 900000; // 15 minutes in milliseconds
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
         var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
 
         window.onload = function() {
