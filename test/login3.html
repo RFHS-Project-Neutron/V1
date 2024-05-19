@@ -63,6 +63,7 @@
             font-size: 20px;
             color: white;
             font-weight: bold; /* Bold text */
+            z-index: 9999; /* Ensure error message is on top */
         }
     </style>
 </head>
@@ -96,7 +97,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
-                        document.getElementById("loginBox").style.display = "none"; // Hide login box
+                        document.getElementById("container").style.display = "none"; // Hide container (including background)
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
