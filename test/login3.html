@@ -72,7 +72,7 @@
         <div class="login-box" id="loginBox">
             <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
                 <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
-                <button type="button" onclick="checkCode()">➔</button>
+                <button type="button" onclick="checkCode()">→</button>
             </form>
             <p id="errorMessage" class="additional-text"></p>
         </div>
