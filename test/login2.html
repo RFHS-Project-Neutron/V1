@@ -53,12 +53,6 @@
             background-color: #0056b3;
         }
 
-        .error-message {
-            color: red;
-            margin-top: 5px;
-            font-weight: bold; /* Bold text */
-        }
-
         /* Additional Text Style */
         .additional-text {
             font-size: 20px;
@@ -75,14 +69,20 @@
                 <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { checkCode(); return false; } return event.charCode >= 48 && event.charCode <= 57">
                 <button type="button" onclick="checkCode()">➔</button>
             </form>
-            <p id="cooldownMessage" class="error-message"></p>
+            <p id="cooldownMessage" class="additional-text"></p>
         </div>
     </div>
 
     <script>
         var consecutiveIncorrectAttempts = 0;
         var cooldownDuration = 900000; // 15 minutes in milliseconds
-        var cooldownStartTime = 0;
+        var cooldownStartTime = parseInt(localStorage.getItem("cooldownStartTime") || "0");
+
+        window.onload = function() {
+            if (cooldownStartTime > 0) {
+                startCooldown();
+            }
+        };
 
         function checkCode() {
             var inputCode = document.getElementById("codeInput").value;
@@ -111,6 +111,8 @@
             document.querySelector("button").disabled = true;
 
             cooldownStartTime = Date.now();
+            localStorage.setItem("cooldownStartTime", cooldownStartTime.toString());
+
             var cooldownInterval = setInterval(function() {
                 var remainingTime = cooldownDuration - (Date.now() - cooldownStartTime);
                 if (remainingTime <= 0) {
@@ -120,10 +122,12 @@
                     document.getElementById("codeInput").disabled = false;
                     document.querySelector("button").disabled = false;
                     document.getElementById("cooldownMessage").innerText = "";
+                    localStorage.removeItem("cooldownStartTime");
                 } else {
                     var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                    document.getElementById("errorMessage").innerText = "Too many attempts.
+Try again in " + minutes + "m " + seconds + "s";
                     document.getElementById("cooldownMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
                 }
             }, 1000);
