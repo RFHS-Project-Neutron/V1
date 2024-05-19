@@ -59,30 +59,30 @@
 <body>
     <div class="container">
         <div class="login-box">
-            <form onsubmit="checkCode(); return false;">
+            <form id="loginForm">
                 <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { checkCode(); return false; } return event.charCode >= 48 && event.charCode <= 57">
-                <button type="submit">➔</button>
+                <button type="button" onclick="checkCode()">➔</button>
             </form>
-            <div class="error-message" id="errorMessage" style="display: none;">Invalid code</div>
+            <p id="errorMessage" class="error-message"></p>
         </div>
     </div>
 
     <script>
-        async function checkCode() {
-            var enteredCode = document.getElementById("codeInput").value;
-            var errorMessage = document.getElementById("errorMessage");
-            
-            // Fetch codes from external file
-            const response = await fetch('/test/codes.txt');
-            const codes = await response.json();
-            
-            // Check if entered code is valid
-            if (!codes.includes(enteredCode)) {
-                errorMessage.style.display = "block";
-            } else {
-                errorMessage.style.display = "none";
-                window.location.href = 'https://project-neutron.site';
-            }
+        function checkCode() {
+            var inputCode = document.getElementById("codeInput").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var validCodes = this.responseText.split("\n");
+                    if (validCodes.includes(inputCode)) {
+                        window.location.href = "https://www.google.com";
+                    } else {
+                        document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                    }
+                }
+            };
+            xhttp.open("GET", "/test/codes.txt", true);
+            xhttp.send();
         }
     </script>
 </body>
