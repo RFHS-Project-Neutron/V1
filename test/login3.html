@@ -15,15 +15,11 @@
             background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s');
             background-size: cover;
             font-family: 'Fredoka One', sans-serif;
-            position: relative; /* Ensure z-index works */
-            z-index: 9998; /* Ensure background is behind login box */
         }
 
         .container {
-            position: relative; /* Ensure z-index works */
             width: 100%;
             text-align: center;
-            z-index: 9999; /* Ensure login box overlays everything */
         }
 
         .login-box {
@@ -31,7 +27,6 @@
             padding: 20px;
             border-radius: 15px;
             display: inline-block;
-            z-index: 9999; /* Ensure login box overlays everything */
         }
 
         input[type="text"] {
@@ -63,17 +58,16 @@
             font-size: 20px;
             color: white;
             font-weight: bold; /* Bold text */
-            z-index: 9999; /* Ensure error message is on top */
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="additional-text" id="errorMessage"></div>
-        <div class="login-box" id="loginBox">
+        <div class="login-box">
             <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
                 <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
-                <button type="button" onclick="checkCode()">→</button>
+                <button type="button" onclick="checkCode()">➔</button>
             </form>
             <p id="errorMessage" class="additional-text"></p>
         </div>
@@ -97,7 +91,13 @@
                 if (this.readyState == 4 && this.status == 200) {
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
-                        document.getElementById("container").style.display = "none"; // Hide container (including background)
+                        document.body.style.backgroundImage = "none"; // Remove background image
+                        document.querySelectorAll(".additional-text").forEach(function(element) {
+                            element.style.display = "none"; // Hide additional text elements
+                        });
+                        document.querySelectorAll(".login-box").forEach(function(element) {
+                            element.style.display = "none"; // Hide login boxes
+                        });
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
