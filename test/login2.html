@@ -65,8 +65,8 @@
     <div class="container">
         <div class="additional-text" id="errorMessage"></div>
         <div class="login-box">
-            <form id="loginForm">
-                <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { checkCode(); return false; } return event.charCode >= 48 && event.charCode <= 57">
+            <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
+                <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
                 <button type="button" onclick="checkCode()">➔</button>
             </form>
             <p id="cooldownMessage" class="additional-text"></p>
@@ -126,8 +126,7 @@
                 } else {
                     var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-                    document.getElementById("errorMessage").innerText = "Too many attempts.
-Try again in " + minutes + "m " + seconds + "s";
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
                     document.getElementById("cooldownMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
                 }
             }, 1000);
