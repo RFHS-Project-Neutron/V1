@@ -1,12 +1,3 @@
-<! DOCTYPE HTML>
-<html>
-<head>
-</head>
-<body>
-  <p> test lmao</p>
-</body>
-</html>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +16,7 @@
             background-size: cover;
             font-family: 'Fredoka One', sans-serif;
             position: relative; /* Ensure z-index works */
+            z-index: 9998; /* Ensure background is behind login box */
         }
 
         .container {
@@ -88,7 +80,7 @@
 
     <script>
         var consecutiveIncorrectAttempts = 0;
-        var errorDuration = 10000; // 3 minutes in milliseconds (lockout cooldown)
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
         var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
 
         window.onload = function() {
