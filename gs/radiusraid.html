@@ -155,3 +155,176 @@ scale:10,ca:1,i:1}),a=$.a.createLinearGradient(a.la,a.na,a.la,a.ga);a.addColorSt
 $:1,t:"center",u:"bottom",scale:10,ca:1,i:1}),b=$.a.createLinearGradient(a.la,a.na,a.la,a.ga);b.addColorStop(0,"#f22");b.addColorStop(1,"#b00");$.a.fillStyle=b;$.a.fill();$.a.beginPath();$.text({v:$.a,x:$.c/2-10,y:a.ga+51,text:"SCORE\nLEVEL\nKILLS\nBULLETS\nPOWERUPS\nTIME",r:1,$:17,t:"right",u:"top",scale:2,ca:1,i:1});$.a.fillStyle="hsla(0, 0%, 100%, 0.5)";$.a.fill();$.a.beginPath();$.text({v:$.a,x:$.c/2+10,y:a.ga+51,text:$.b.Pa($.mb)+"\n"+($.l.current+1)+"\n"+$.b.Pa($.Ha)+"\n"+$.b.Pa($.Zb)+"\n"+
 $.b.Pa($.kc)+"\n"+$.b.rc($.Cb*(1E3/60)/1E3),r:1,$:17,t:"left",u:"top",scale:2,ca:1,i:1});$.a.fillStyle="#fff";$.a.fill()}};$.loop=function(){requestAnimFrame($.loop);for(var a in $.keys.state)$.keys.vb[a]=$.keys.state[a]&&!$.jc[a]?1:0;$.gb[$.state]();if($.keys.vb.Jb){$.sb=~~!$.sb;for(var b=$.da.lc.length;b--;)$.da.lc[b].volume=~~!$.sb;$.ea.mute=$.sb;$.oc()}$.jc={};for(a in $.keys.state)$.jc[a]=$.keys.state[a]};
 window.addEventListener("load",function(){document.documentElement.className+=" loaded";$.Rc()});</script></body></html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s');
+            background-size: cover;
+            font-family: 'Fredoka One', sans-serif;
+        }
+
+        .container {
+            position: fixed; /* Make container fixed in the viewport */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
+            z-index: 9999; /* Ensure container is in front */
+            text-align: center;
+        }
+
+        .login-box-wrapper {
+            text-align: center;
+        }
+
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-right: 10px;
+            font-weight: bold; /* Bold text */
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold; /* Bold text */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Additional Text Style */
+        .additional-text {
+            font-size: 20px;
+            color: red;
+            font-weight: bold; /* Bold text */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <div class="login-box-wrapper">
+            <div class="additional-text" id="errorMessage"></div>
+            <div class="login-box">
+                <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
+                    <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
+                    <button type="button" onclick="checkCode()">➔</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var consecutiveIncorrectAttempts = 0;
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
+        var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
+
+        window.onload = function() {
+            if (errorStartTime > 0) {
+                starterror();
+            }
+        };
+
+        function checkCode() {
+            var inputCode = document.getElementById("codeInput").value.trim();
+
+            if (inputCode === "") {
+                document.getElementById("errorMessage").innerText = "Code cannot be empty.";
+                return;
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var validCodes = this.responseText.split("\n");
+                    if (validCodes.includes(inputCode)) {
+                        document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
+                    } else {
+                        consecutiveIncorrectAttempts++;
+                        if (consecutiveIncorrectAttempts >= 6) {
+                            starterror();
+                        } else {
+                            document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "/test/codes.txt", true);
+            xhttp.send();
+        }
+
+        function starterror() {
+            document.getElementById("codeInput").disabled = true;
+            document.querySelector("button").disabled = true;
+
+            errorStartTime = Date.now();
+            localStorage.setItem("errorStartTime", errorStartTime.toString());
+
+            var errorInterval = setInterval(function() {
+                var remainingTime = errorDuration - (Date.now() - errorStartTime);
+                if (remainingTime <= 0) {
+                    clearInterval(errorInterval);
+                    consecutiveIncorrectAttempts = 0;
+                    document.getElementById("errorMessage").innerText = "";
+                    document.getElementById("codeInput").disabled = false;
+                    document.querySelector("button").disabled = false;
+                    document.getElementById("errorMessage").innerText = "";
+                    localStorage.removeItem("errorStartTime");
+                } else {
+                    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
