@@ -73,7 +73,7 @@
             var errorMessage = document.getElementById("errorMessage");
             
             // Fetch codes from external file
-            const response = await fetch('/test/codes.js');
+            const response = await fetch('/test/codes.txt');
             const codes = await response.json();
             
             // Check if entered code is valid
