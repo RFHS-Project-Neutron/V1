@@ -14,14 +14,28 @@
   h4 { font-family: 'Oswald', sans-serif; font-size: 14px; }
   h5 { font-family: 'Oswald', sans-serif; font-size: 12px; }
   h6 { font-family: 'Oswald', sans-serif; font-size: 8px; }
+  .swf-container { 
+    position: relative; 
+    width: 100%; 
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  }
+  .swf {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>
 </head>
 <body>
 <!-- Your Ruffle script -->
 <script src="https://xxsibxx.github.io/ruffleembedsetup112/ruffle/ruffle.js"></script>
 <!-- Your SWF embed code -->
-<div class="swf" dir="ltr" style="text-align: left;" trbidi="on">
-  <embed height="600" pluginspage="http://www.macromedia.com/go/getflashplayer" src="https://bsb-playz.github.io/happywheels/HappyWheels.swf" type="application/x-shockwave-flash" width="900"></embed>
+<div class="swf-container">
+  <div class="swf" dir="ltr" style="text-align: left;" trbidi="on">
+    <embed height="600" pluginspage="http://www.macromedia.com/go/getflashplayer" src="https://bsb-playz.github.io/happywheels/HappyWheels.swf" type="application/x-shockwave-flash" width="900"></embed>
+  </div>
 </div>
 </body>
 </html>
