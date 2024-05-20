@@ -6,69 +6,193 @@
     <title>Live Chat</title>
     <style>
         body {
-            font-family: 'Fredoka One', cursive;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s');
+            background-size: cover;
+            font-family: 'Fredoka One', sans-serif;
         }
 
-        #chat-container {
-            width: 300px;
-            margin: 0 auto;
-            padding: 20px;
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            text-align: center;
+            transition: opacity 1s;
+        }
+
+        #chatMessages {
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
             border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            margin-bottom: 20px;
         }
 
-        #message-container {
-            height: 300px;
-            overflow-y: scroll;
-            border-bottom: 1px solid #ccc;
-        }
-
-        #message-input {
-            width: calc(100% - 70px);
+        .message {
             margin-bottom: 10px;
         }
 
-        #send-button {
-            width: 70px;
-            display: block;
-            margin: 0 auto;
+        .message .name {
+            font-weight: bold;
+        }
+
+        .message .time {
+            font-size: 12px;
+            color: #888;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
         }
     </style>
 </head>
 <body>
-    <div id="chat-container">
-        <div id="message-container"></div>
-        <input type="text" id="message-input" placeholder="Type your message...">
-        <button id="send-button">Send</button>
+    <div class="container" id="chatContainer" style="display: none;">
+        <div id="chatMessages"></div>
+        <input type="text" id="messageInput" placeholder="Type your message...">
+        <button onclick="sendMessage()">Send</button>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <!-- Your existing overlay and welcome message -->
+    <div class="overlay" id="overlay"></div>
+    <div id="welcomeMessage"></div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const messageContainer = document.getElementById('message-container');
-            const messageInput = document.getElementById('message-input');
-            const sendButton = document.getElementById('send-button');
-            const socket = io();
+        var consecutiveIncorrectAttempts = 0;
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
+        var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
 
-            socket.on('chat message', (msg) => {
-                appendMessage(msg);
-            });
-
-            sendButton.addEventListener('click', function() {
-                const messageText = messageInput.value;
-                if (messageText.trim() !== '') {
-                    socket.emit('chat message', messageText);
-                    messageInput.value = '';
-                }
-            });
-
-            function appendMessage(message) {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message');
-                messageElement.textContent = message;
-                messageContainer.appendChild(messageElement);
-                messageContainer.scrollTop = messageContainer.scrollHeight;
+        window.onload = function () {
+            if (errorStartTime > 0) {
+                starterror();
+            } else {
+                document.getElementById("chatContainer").style.display = "block";
             }
-        });
+        };
+
+        function displayMessage(name, message, time) {
+            var chatMessages = document.getElementById("chatMessages");
+            var messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.innerHTML = '<span class="name">' + name + '</span>: ' + message + '<br><span class="time">' + time + '</span>';
+            chatMessages.appendChild(messageDiv);
+        }
+
+        function sendMessage() {
+            var messageInput = document.getElementById("messageInput");
+            var message = messageInput.value.trim();
+            if (message !== "") {
+                var inputCode = document.getElementById("codeInput").value.trim();
+                var userName = codeToNameMap[inputCode];
+                var currentTime = new Date();
+                var hours = currentTime.getHours();
+                var minutes = currentTime.getMinutes();
+                var timeString = hours + ':' + (minutes < 10 ? '0' + minutes : minutes);
+                displayMessage(userName, message, timeString);
+                messageInput.value = "";
+            }
+        }
+
+        function checkCode() {
+            var inputCode = document.getElementById("codeInput").value.trim();
+            if (inputCode === "") {
+                document.getElementById("errorMessage").innerText = "Code cannot be empty.";
+                return;
+            }
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var validCodes = this.responseText.split("\n");
+                    if (validCodes.includes(inputCode)) {
+                        var userName = codeToNameMap[inputCode];
+                        document.getElementById("loginBoxWrapper").style.display = "none";
+                        var welcomeMessage = document.getElementById("welcomeMessage");
+                        welcomeMessage.innerText = "Welcome, " + userName + "!";
+                        welcomeMessage.style.display = "block";
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "1";
+                        }, 0);
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "0";
+                            document.getElementById("loginContainer").style.opacity = "0";
+                            document.getElementById("overlay").style.opacity = "0";
+                        }, 3500);
+                        setTimeout(() => {
+                            document.getElementById("overlay").style.display = "none";
+                            document.getElementById("overlay").style.pointerEvents = "none";
+                            document.getElementById("loginContainer").style.display = "none";
+                            document.getElementById("chatContainer").style.display = "block"; // Show the chat container
+                        }, 4500);
+                    } else {
+                        consecutiveIncorrectAttempts++;
+                        if (consecutiveIncorrectAttempts >= 6) {
+                            starterror();
+                        } else {
+                            document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "/test/codes.txt", true);
+            xhttp.send();
+        }
+
+        function starterror() {
+            document.getElementById("codeInput").disabled = true;
+            document.querySelector("button").disabled = true;
+            errorStartTime = Date.now();
+            localStorage.setItem("errorStartTime", errorStartTime.toString());
+            var errorInterval = setInterval(function () {
+                var remainingTime = errorDuration - (Date.now() - errorStartTime);
+                if (remainingTime <= 0) {
+                    clearInterval(errorInterval);
+                    consecutiveIncorrectAttempts = 0;
+                    document.getElementById("errorMessage").innerText = "";
+                    document.getElementById("codeInput").disabled = false;
+                    document.querySelector("button").disabled = false;
+                    document.getElementById("errorMessage").innerText = "";
+                    localStorage.removeItem("errorStartTime");
+                } else {
+                    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
+        }
     </script>
 </body>
 </html>
