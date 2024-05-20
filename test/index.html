@@ -73,8 +73,9 @@
             margin-bottom: 10px;
         }
 
-        .welcome-message {
+        #welcomeMessage {
             display: none;
+            text-align: center;
             font-size: 24px;
             font-weight: bold;
             opacity: 0;
@@ -92,17 +93,18 @@
 </head>
 <body>
     <div class="container" id="loginContainer">
-        <div class="login-box-wrapper">
+        <div class="login-box-wrapper" id="loginBoxWrapper">
             <div class="additional-text" id="errorMessage"></div>
             <div class="login-box">
                 <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
                     <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
                     <button type="button" onclick="checkCode()">➔</button>
                 </form>
-                <div class="welcome-message" id="welcomeMessage"></div>
             </div>
         </div>
     </div>
+
+    <div id="welcomeMessage"></div>
 
     <script>
         var consecutiveIncorrectAttempts = 0;
@@ -129,6 +131,7 @@
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
                         var userName = codeToNameMap[inputCode];
+                        document.getElementById("loginBoxWrapper").style.display = "none"; // Hide only the login box wrapper
                         var welcomeMessage = document.getElementById("welcomeMessage");
                         welcomeMessage.innerText = "Welcome, " + userName + "!";
                         welcomeMessage.style.display = "block";
