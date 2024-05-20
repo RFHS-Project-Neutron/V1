@@ -176,10 +176,20 @@ border-radius: 5px;
             60% { opacity: 1; }
             100% { opacity: 0; }
         }
+
+        /* Disable pointer events for the entire page */
+        body.block-pointer-events {
+            pointer-events: none;
+        }
+
+        /* Enable pointer events only for the container */
+        .container {
+            pointer-events: all;
+        }
     </style>
     <script src="codemap.js"></script>
 </head>
-<body>
+<body class="block-pointer-events">
     <div class="container" id="loginContainer">
         <div class="login-box-wrapper" id="loginBoxWrapper">
             <div class="additional-text" id="errorMessage"></div>
@@ -229,6 +239,7 @@ border-radius: 5px;
                         setTimeout(() => {
                             welcomeMessage.style.opacity = "0";
                             document.getElementById("loginContainer").style.opacity = "0";
+                            document.body.classList.remove("block-pointer-events");
                         }, 3500); // 1.5s fade-in + 2s display
                     } else {
                         consecutiveIncorrectAttempts++;
