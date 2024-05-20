@@ -47,10 +47,14 @@
             const messageInput = document.getElementById('message-input');
             const sendButton = document.getElementById('send-button');
 
+            // Load messages from localStorage on page load
+            loadMessages();
+
             sendButton.addEventListener('click', function() {
                 const messageText = messageInput.value;
                 if (messageText.trim() !== '') {
                     appendMessage('You', messageText);
+                    saveMessage('You', messageText);
                     messageInput.value = '';
                 }
             });
@@ -61,6 +65,23 @@
                 messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
                 messageContainer.appendChild(messageElement);
                 messageContainer.scrollTop = messageContainer.scrollHeight;
+            }
+
+            function saveMessage(sender, message) {
+                // Retrieve existing messages or initialize an empty array
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+                // Add the new message to the array
+                messages.push({ sender, message });
+                // Save the updated messages array back to localStorage
+                localStorage.setItem('chatMessages', JSON.stringify(messages));
+            }
+
+            function loadMessages() {
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+                // Iterate over each message and append it to the message container
+                messages.forEach(message => {
+                    appendMessage(message.sender, message.message);
+                });
             }
         });
     </script>
