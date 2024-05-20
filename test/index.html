@@ -252,6 +252,7 @@ border-radius: 5px;
                         setTimeout(() => {
                             document.getElementById("overlay").style.display = "none";
                             document.getElementById("overlay").style.pointerEvents = "none";
+                            document.getElementById("loginContainer").style.display = "none"; // Ensure container is hidden after fade-out
                         }, 4500); // 1s fade-out for overlay
                     } else {
                         consecutiveIncorrectAttempts++;
@@ -294,3 +295,4 @@ border-radius: 5px;
     </script>
 </body>
 </html>
+
