@@ -29,6 +29,7 @@
             background-color: rgba(255, 255, 255, 0.8);
             z-index: 9999;
             text-align: center;
+            transition: opacity 1s;
         }
 
         .login-box-wrapper {
@@ -75,6 +76,8 @@
 
         #welcomeMessage {
             display: none;
+            position: absolute;
+            z-index: 10000; /* Higher than the container */
             text-align: center;
             font-size: 24px;
             font-weight: bold;
@@ -140,6 +143,7 @@
                         }, 0);
                         setTimeout(() => {
                             welcomeMessage.style.opacity = "0";
+                            document.getElementById("loginContainer").style.opacity = "0";
                         }, 3500); // 1.5s fade-in + 2s display
                     } else {
                         consecutiveIncorrectAttempts++;
