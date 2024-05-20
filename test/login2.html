@@ -14,7 +14,7 @@
             align-items: center;
             background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s');
             background-size: cover;
-            font-family: 'Fredoka One', sans-serif;
+            font-family: 'Fredoka One', sans-serif; /* Changed font-family */
         }
 
         .container {
@@ -49,7 +49,7 @@
             font-size: 16px;
             margin-right: 10px;
             font-weight: bold;
-            font-family: 'Fredoka One', sans-serif;
+            font-family: 'Fredoka One', sans-serif; /* Changed font-family */
         }
 
         button {
@@ -61,7 +61,7 @@
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            font-family: 'Fredoka One', sans-serif;
+            font-family: 'Fredoka One', sans-serif; /* Changed font-family */
         }
 
         button:hover {
@@ -73,7 +73,7 @@
             color: red;
             font-weight: bold;
             margin-bottom: 10px;
-            font-family: 'Fredoka One', sans-serif;
+            font-family: 'Fredoka One', sans-serif; /* Changed font-family */
         }
 
         #welcomeMessage {
@@ -83,7 +83,7 @@
             font-weight: bold;
             opacity: 0;
             animation: fadeInOut 5s forwards;
-            font-family: 'Fredoka One', sans-serif;
+            font-family: 'Fredoka One', sans-serif; /* Changed font-family */
         }
 
         @keyframes fadeInOut {
@@ -135,16 +135,17 @@
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
                         var userName = codeToNameMap[inputCode];
-                        var welcomeMessage = document.getElementById("welcomeMessage");
-                        welcomeMessage.innerText = "Welcome, " + userName + "!";
-                        welcomeMessage.style.display = "block";
-                        welcomeMessage.style.opacity = "1";
+                        document.getElementById("welcomeMessage").innerText = "Welcome, " + userName + "!";
+                        document.getElementById("welcomeMessage").style.display = "block";
                         setTimeout(() => {
-                            welcomeMessage.style.opacity = "0";
-                        }, 2000); // 2 seconds display
-                        setTimeout(() => {
-                            document.getElementById("loginContainer").style.display = "none"; // Hide the entire container after welcome message fades out
-                        }, 3500); // 1.5s fade-in + 2s display + 1.5s fade-out
+                            document.getElementById("welcomeMessage").style.opacity = "1";
+                            setTimeout(() => {
+                                document.getElementById("welcomeMessage").style.opacity = "0";
+                                setTimeout(() => {
+                                    document.getElementById("loginContainer").style.display = "none";
+                                }, 1500); // Wait for the fade-out to complete
+                            }, 2000); // 2 seconds display time
+                        }, 0); // Immediate fade-in start
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
