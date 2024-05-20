@@ -73,9 +73,8 @@
             margin-bottom: 10px;
         }
 
-        #welcomeMessage {
+        .welcome-message {
             display: none;
-            text-align: center;
             font-size: 24px;
             font-weight: bold;
             opacity: 0;
@@ -84,6 +83,7 @@
 
         @keyframes fadeInOut {
             0% { opacity: 0; }
+            20% { opacity: 1; }
             60% { opacity: 1; }
             100% { opacity: 0; }
         }
@@ -99,11 +99,10 @@
                     <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
                     <button type="button" onclick="checkCode()">➔</button>
                 </form>
+                <div class="welcome-message" id="welcomeMessage"></div>
             </div>
         </div>
     </div>
-
-    <div id="welcomeMessage"></div>
 
     <script>
         var consecutiveIncorrectAttempts = 0;
@@ -130,7 +129,6 @@
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
                         var userName = codeToNameMap[inputCode];
-                        document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
                         var welcomeMessage = document.getElementById("welcomeMessage");
                         welcomeMessage.innerText = "Welcome, " + userName + "!";
                         welcomeMessage.style.display = "block";
