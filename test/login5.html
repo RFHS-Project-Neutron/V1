@@ -83,6 +83,11 @@ border-radius: 5px;
 
 
 
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +108,7 @@ border-radius: 5px;
         }
 
         .container {
-            position: fixed; /* Make container fixed in the viewport */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -111,9 +116,11 @@ border-radius: 5px;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
-            z-index: 9999; /* Ensure container is in front */
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
             text-align: center;
+            transition: opacity 1.5s ease-in-out;
+            opacity: 1;
         }
 
         .login-box-wrapper {
@@ -133,7 +140,8 @@ border-radius: 5px;
             border: 1px solid #ccc;
             font-size: 16px;
             margin-right: 10px;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
+            font-family: 'Fredoka One', sans-serif;
         }
 
         button {
@@ -144,21 +152,43 @@ border-radius: 5px;
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
+            font-family: 'Fredoka One', sans-serif;
         }
 
         button:hover {
             background-color: #0056b3;
         }
 
-        /* Additional Text Style */
         .additional-text {
             font-size: 20px;
             color: red;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
             margin-bottom: 10px;
+            font-family: 'Fredoka One', sans-serif;
+        }
+
+        #welcomeMessage {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInOut 3s forwards; /* Adjusted animation duration */
+            font-family: 'Fredoka One', sans-serif;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            33.33% { opacity: 1; }
+            66.66% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
+    <script src="codemap.js"></script>
 </head>
 <body>
     <div class="container" id="loginContainer">
@@ -172,6 +202,8 @@ border-radius: 5px;
             </div>
         </div>
     </div>
+
+    <div id="welcomeMessage"></div>
 
     <script>
         var consecutiveIncorrectAttempts = 0;
@@ -197,7 +229,17 @@ border-radius: 5px;
                 if (this.readyState == 4 && this.status == 200) {
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
-                        document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
+                        var userName = codeToNameMap[inputCode];
+                        document.getElementById("loginContainer").style.opacity = "0";
+                        setTimeout(() => {
+                            document.getElementById("loginContainer").style.display = "none";
+                            var welcomeMessage = document.getElementById("welcomeMessage");
+                            welcomeMessage.innerText = "Welcome, " + userName + "!";
+                            welcomeMessage.style.opacity = "1";
+                            setTimeout(() => {
+                                welcomeMessage.style.opacity = "0";
+                            }, 2000); // Fade out after 1 second stay
+                        }, 1000); // Wait for 1 second before fading out
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
