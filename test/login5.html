@@ -119,8 +119,8 @@ border-radius: 5px;
             background-color: rgba(255, 255, 255, 0.8);
             z-index: 9999;
             text-align: center;
-            transition: opacity 1.5s ease-in-out;
-            opacity: 1;
+            transition: opacity 1.5s ease-in-out; /* Added transition for opacity */
+            opacity: 1; /* Initially set to fully visible */
         }
 
         .login-box-wrapper {
@@ -177,14 +177,15 @@ border-radius: 5px;
             font-size: 24px;
             font-weight: bold;
             opacity: 0;
-            animation: fadeInOut 3s forwards; /* Adjusted animation duration */
+            animation: fadeInOut 5s forwards;
+            z-index: 10000; /* Ensure it's above everything */
             font-family: 'Fredoka One', sans-serif;
         }
 
         @keyframes fadeInOut {
             0% { opacity: 0; }
-            33.33% { opacity: 1; }
-            66.66% { opacity: 1; }
+            20% { opacity: 1; }
+            60% { opacity: 1; }
             100% { opacity: 0; }
         }
     </style>
@@ -230,16 +231,19 @@ border-radius: 5px;
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
                         var userName = codeToNameMap[inputCode];
-                        document.getElementById("loginContainer").style.opacity = "0";
+                        document.getElementById("loginContainer").style.opacity = "0"; // Fade out the container
                         setTimeout(() => {
-                            document.getElementById("loginContainer").style.display = "none";
+                            document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
                             var welcomeMessage = document.getElementById("welcomeMessage");
                             welcomeMessage.innerText = "Welcome, " + userName + "!";
-                            welcomeMessage.style.opacity = "1";
+                            welcomeMessage.style.display = "block";
+                            setTimeout(() => {
+                                welcomeMessage.style.opacity = "1";
+                            }, 0);
                             setTimeout(() => {
                                 welcomeMessage.style.opacity = "0";
-                            }, 2000); // Fade out after 1 second stay
-                        }, 1000); // Wait for 1 second before fading out
+                            }, 3500); // 1.5s fade-in + 2s display
+                        }, 1500); // Wait for 1.5 seconds for the container to fade out completely
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
@@ -274,7 +278,8 @@ border-radius: 5px;
                 } else {
                     var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
                     var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
-                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again
+in " + minutes + "m " + seconds + "s";
                 }
             }, 1000);
         }
