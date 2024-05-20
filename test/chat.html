@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Room</title>
+    <title>Live Chat</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Fredoka One', cursive;
         }
 
         #chat-container {
@@ -41,47 +41,32 @@
         <button id="send-button">Send</button>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const messageContainer = document.getElementById('message-container');
             const messageInput = document.getElementById('message-input');
             const sendButton = document.getElementById('send-button');
+            const socket = io();
 
-            // Load messages from localStorage on page load
-            loadMessages();
+            socket.on('chat message', (msg) => {
+                appendMessage(msg);
+            });
 
             sendButton.addEventListener('click', function() {
                 const messageText = messageInput.value;
                 if (messageText.trim() !== '') {
-                    appendMessage('You', messageText);
-                    saveMessage('You', messageText);
+                    socket.emit('chat message', messageText);
                     messageInput.value = '';
                 }
             });
 
-            function appendMessage(sender, message) {
+            function appendMessage(message) {
                 const messageElement = document.createElement('div');
                 messageElement.classList.add('message');
-                messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+                messageElement.textContent = message;
                 messageContainer.appendChild(messageElement);
                 messageContainer.scrollTop = messageContainer.scrollHeight;
-            }
-
-            function saveMessage(sender, message) {
-                // Retrieve existing messages or initialize an empty array
-                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-                // Add the new message to the array
-                messages.push({ sender, message });
-                // Save the updated messages array back to localStorage
-                localStorage.setItem('chatMessages', JSON.stringify(messages));
-            }
-
-            function loadMessages() {
-                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
-                // Iterate over each message and append it to the message container
-                messages.forEach(message => {
-                    appendMessage(message.sender, message.message);
-                });
             }
         });
     </script>
