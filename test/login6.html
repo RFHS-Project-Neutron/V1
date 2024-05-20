@@ -18,7 +18,7 @@
         }
 
         .container {
-            position: fixed; /* Make container fixed in the viewport */
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
@@ -26,8 +26,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8); /* White semi-transparent background */
-            z-index: 9999; /* Ensure container is in front */
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
             text-align: center;
         }
 
@@ -48,7 +48,8 @@
             border: 1px solid #ccc;
             font-size: 16px;
             margin-right: 10px;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
+            font-family: 'Fredoka One', sans-serif;
         }
 
         button {
@@ -59,22 +60,44 @@
             border-radius: 5px;
             font-size: 16px;
             cursor: pointer;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
+            font-family: 'Fredoka One', sans-serif;
         }
 
         button:hover {
             background-color: #0056b3;
         }
 
-        /* Additional Text Style */
         .additional-text {
             font-size: 20px;
             color: red;
-            font-weight: bold; /* Bold text */
+            font-weight: bold;
             margin-bottom: 10px;
+            font-family: 'Fredoka One', sans-serif;
+        }
+
+        #welcomeMessage {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+            font-family: 'Fredoka One', sans-serif;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            60% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
-    <script src="/test/codemap.js"></script>
+    <script src="codemap.js"></script>
 </head>
 <body>
     <div class="container" id="loginContainer">
@@ -89,7 +112,7 @@
         </div>
     </div>
 
-    <div id="welcomeMessage" style="display:none; text-align:center; font-size:24px; font-weight:bold;"></div>
+    <div id="welcomeMessage"></div>
 
     <script>
         var consecutiveIncorrectAttempts = 0;
@@ -116,9 +139,17 @@
                     var validCodes = this.responseText.split("\n");
                     if (validCodes.includes(inputCode)) {
                         var userName = codeToNameMap[inputCode];
-                        document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
-                        document.getElementById("welcomeMessage").innerText = "Welcome, " + userName + "!";
-                        document.getElementById("welcomeMessage").style.display = "block";
+                        document.getElementById("loginContainer").style.pointerEvents = "none"; // Disable clicking on background
+                        var welcomeMessage = document.getElementById("welcomeMessage");
+                        welcomeMessage.innerText = "Welcome, " + userName + "!";
+                        welcomeMessage.style.display = "block";
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "1";
+                        }, 0);
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "0";
+                            document.getElementById("loginContainer").style.pointerEvents = "auto"; // Enable clicking on background
+                        }, 3500); // 1.5s fade-in + 2s display
                     } else {
                         consecutiveIncorrectAttempts++;
                         if (consecutiveIncorrectAttempts >= 6) {
