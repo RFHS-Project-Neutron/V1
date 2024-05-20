@@ -1,172 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Project Neutron</title>
-    <link rel="icon" type="image/png" href="icon.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
     <style>
-        .corner {
-            width: 60px;
-            display: inline-block;
-            position: absolute;
-            margin-left: 40px;
-            margin-top: 0px;
-            top: 0;
-        }
-        
-        .header {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
         body {
-            background-color: black;
-            position: relative;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s');
+            background-size: cover;
+            font-family: 'Fredoka One', sans-serif;
         }
 
-        img {
-            width: 80%;
-            display: block;
-            margin: 0 auto;
-            margin-bottom: 0px;
-            margin-top: 0px;
-        }
-
-        #clock {
-            font-size: 40px;
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
             text-align: center;
-            margin: 0px;
-            color: #F6C324;
-            font-family: sans-serif;
-            text-shadow: 0 0 20px #F6C324;
-            border: 3px solid #F6C324;
+        }
+
+        .login-box-wrapper {
+            text-align: center;
+        }
+
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
             border-radius: 15px;
-            width: 35%;
-            box-shadow: 0 0 5px #F6C324;
-        }
-
-        hr {
-            color: white;
-            border: 2px solid white;
-            width: 25%;
-        }
-
-        .button-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .button {
             display: inline-block;
-            width: 150px;
-            height: 60px;
-            color: white;
-            font-size: 30px;
-            line-height: 60px;
-            text-align: center;
-            margin: 0 20px;
-            margin-bottom: 0px;
-            cursor: pointer;
-            border-radius: 15px;
-            text-shadow: 0px 0px 30px white;
-            position: relative;
-            font-family: sans-serif;
-            transition: font-size 0.3s;
         }
 
-        .button:hover {
-            text-shadow: 0px 0px 30px #F6C324;
-            color: #F6C324;
-            font-size: 35px;
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-            background-color: #333;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0px 0px 10px white;
-            margin-bottom:0px;
-        }
-
-        .button:hover .dropdown {
-            display: block;
-        }
-
-        .dropdown-content {
-            display: none;
+        input[type="text"] {
             padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-right: 10px;
+            font-weight: bold;
         }
 
-        .dropdown-content a {
-            display: block;
+        button {
+            background-color: #007bff;
             color: white;
-            text-decoration: none;
-            padding: 5px 0;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            transition: font-size 0.3s;
+            font-weight: bold;
         }
 
-        .dropdown-content a:hover {
-            background-color: #555;
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .additional-text {
             font-size: 20px;
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #welcomeMessage {
+            display: none;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            60% { opacity: 1; }
+            100% { opacity: 0; }
         }
     </style>
+    <script src="codemap.js"></script>
 </head>
 <body>
-
-    <a href="git hub page"><img class="corner" src="icon.png"></a>
-    
-    <div class="header">
-        <div class="button-container">
-            <div class="button"><b>Home</b></div>
-            <div class="button"><b>Games</b></div>
-            <div class="button"><b>Movies</b></div>
-            <div class="button" style="font-size: 30px;">
-                <b>Cloak Tab</b>
-                <div class="dropdown">
-                    <div class="dropdown-content">
-                        <a href="link.html">Google</a>
-                        <a href="link.html">Google Drive</a>
-                        <a href="link.html">Classlink</a>
-                        <a href="link.html">Schoology</a>
-                        <a href="link.html">Infinite Campus</a>
-                        <a href="link.html">SmartPass</a>
-                    </div>
-                </div>
+    <div class="container" id="loginContainer">
+        <div class="login-box-wrapper">
+            <div class="additional-text" id="errorMessage"></div>
+            <div class="login-box">
+                <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
+                    <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
+                    <button type="button" onclick="checkCode()">➔</button>
+                </form>
             </div>
         </div>
     </div>
-    
-    <img src="logo.png">
-    
-    <center><b><div id="clock"></div></b></center>
-    
+
+    <div id="welcomeMessage"></div>
+
     <script>
-        function updateClock() {
-            var now = new Date();
-            var hours = now.getHours();
-            var minutes = now.getMinutes();
-            var seconds = now.getSeconds();
+        var consecutiveIncorrectAttempts = 0;
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
+        var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
 
-            hours = hours < 10 ? '0' + hours : hours;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            seconds = seconds < 10 ? '0' + seconds : seconds;
+        window.onload = function() {
+            if (errorStartTime > 0) {
+                starterror();
+            }
+        };
 
-            var timeString = hours + ':' + minutes + ':' + seconds;
-            document.getElementById('clock').textContent = timeString;
+        function checkCode() {
+            var inputCode = document.getElementById("codeInput").value.trim();
 
-            setTimeout(updateClock, 1000);
+            if (inputCode === "") {
+                document.getElementById("errorMessage").innerText = "Code cannot be empty.";
+                return;
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var validCodes = this.responseText.split("\n");
+                    if (validCodes.includes(inputCode)) {
+                        var userName = codeToNameMap[inputCode];
+                        document.getElementById("loginContainer").style.display = "none"; // Hide the entire container
+                        var welcomeMessage = document.getElementById("welcomeMessage");
+                        welcomeMessage.innerText = "Welcome, " + userName + "!";
+                        welcomeMessage.style.display = "block";
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "1";
+                        }, 0);
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "0";
+                        }, 3500); // 1.5s fade-in + 2s display
+                    } else {
+                        consecutiveIncorrectAttempts++;
+                        if (consecutiveIncorrectAttempts >= 6) {
+                            starterror();
+                        } else {
+                            document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "/test/codes.txt", true);
+            xhttp.send();
         }
 
-        updateClock();
+        function starterror() {
+            document.getElementById("codeInput").disabled = true;
+            document.querySelector("button").disabled = true;
+
+            errorStartTime = Date.now();
+            localStorage.setItem("errorStartTime", errorStartTime.toString());
+
+            var errorInterval = setInterval(function() {
+                var remainingTime = errorDuration - (Date.now() - errorStartTime);
+                if (remainingTime <= 0) {
+                    clearInterval(errorInterval);
+                    consecutiveIncorrectAttempts = 0;
+                    document.getElementById("errorMessage").innerText = "";
+                    document.getElementById("codeInput").disabled = false;
+                    document.querySelector("button").disabled = false;
+                    document.getElementById("errorMessage").innerText = "";
+                    localStorage.removeItem("errorStartTime");
+                } else {
+                    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
+        }
     </script>
-    
 </body>
 </html>
