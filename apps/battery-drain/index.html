@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Battery Drain Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: red;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+        }
+        #timer {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h1>WARNING: Battery Drain Test</h1>
+    <p>This page will run intensive tasks to drain your battery quickly.</p>
+    <p>Use it responsibly and be aware of potential risks including hardware damage and data loss.</p>
+    <button id="startButton">Start Test</button>
+    <button id="stopButton">Stop Test</button>
+    <div id="timer"></div>
+
+    <script>
+        let running = false;
+        let workers = [];
+        let battery;
+        let drainStartTime;
+        let initialBatteryLevel;
+
+        async function getBattery() {
+            battery = await navigator.getBattery();
+            battery.addEventListener('levelchange', updateTimer);
+            initialBatteryLevel = battery.level;
+            updateTimer();
+        }
+
+        function updateTimer() {
+            if (!running) return;
+            const elapsedTime = (Date.now() - drainStartTime) / 1000; // in seconds
+            const batteryUsed = initialBatteryLevel - battery.level;
+            const batterySize = 100; // assuming battery size as 100% for simplicity
+            const drainRate = batteryUsed / elapsedTime; // percentage per second
+            const remainingBattery = battery.level * batterySize;
+            const estimatedTimeToDrain = remainingBattery / drainRate; // in seconds
+
+            document.getElementById('timer').innerText = `Estimated time to fully drain: ${Math.round(estimatedTimeToDrain)} seconds`;
+        }
+
+        function startTest() {
+            if (running) return;
+            running = true;
+            drainStartTime = Date.now();
+            for (let i = 0; i < navigator.hardwareConcurrency; i++) {
+                let worker = new Worker(URL.createObjectURL(new Blob(["(" + workerFunction.toString() + ")()"], {type: 'text/javascript'})));
+                workers.push(worker);
+            }
+            getBattery();
+        }
+
+        function stopTest() {
+            running = false;
+            workers.forEach(worker => worker.terminate());
+            workers = [];
+            document.getElementById('timer').innerText = '';
+        }
+
+        function workerFunction() {
+            function heavyComputation() {
+                let result = 0;
+                for (let i = 0; i < 1e9; i++) {
+                    result += Math.sqrt(i);
+                }
+                setTimeout(heavyComputation, 0);
+            }
+            heavyComputation();
+        }
+
+        document.getElementById('startButton').addEventListener('click', startTest);
+        document.getElementById('stopButton').addEventListener('click', stopTest);
+    </script>
+</body>
+</html>
