@@ -38,18 +38,28 @@
         let battery;
         let drainStartTime;
         let initialBatteryLevel;
+        let lastBatteryLevel;
+        let intervalId;
 
         async function getBattery() {
             battery = await navigator.getBattery();
             battery.addEventListener('levelchange', updateTimer);
             initialBatteryLevel = battery.level;
+            lastBatteryLevel = battery.level;
             updateTimer();
         }
 
         function updateTimer() {
             if (!running) return;
+
             const elapsedTime = (Date.now() - drainStartTime) / 1000; // in seconds
-            const batteryUsed = initialBatteryLevel - battery.level;
+            const batteryUsed = lastBatteryLevel - battery.level;
+            if (batteryUsed <= 0) {
+                document.getElementById('timer').innerText = 'Calculating...';
+                return;
+            }
+
+            lastBatteryLevel = battery.level;
             const batterySize = 100; // assuming battery size as 100% for simplicity
             const drainRate = batteryUsed / elapsedTime; // percentage per second
             const remainingBattery = battery.level * batterySize;
@@ -67,12 +77,14 @@
                 workers.push(worker);
             }
             getBattery();
+            intervalId = setInterval(updateTimer, 10000); // Update timer every 10 seconds
         }
 
         function stopTest() {
             running = false;
             workers.forEach(worker => worker.terminate());
             workers = [];
+            clearInterval(intervalId);
             document.getElementById('timer').innerText = '';
         }
 
