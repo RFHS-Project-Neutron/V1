@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Embed</title>
+    <style>
+        body {
+            font-family: 'Fredoka One', cursive;
+            font-weight: lighter;
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .video-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .video-container video {
+            min-width: 80%;
+            max-width: 90%;
+            height: auto;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .popup-content {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .close {
+            color: white;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #purchaseButton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: gold;
+            color: black;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #purchaseButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px gold;
+        }
+
+        #downloadButton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #downloadButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #4CAF50;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+</head>
+<body oncontextmenu="return false;">
+    <div class="video-container">
+        <video id="mainVideo" controls>
+            <source src="https://go.wootly.ch/dash?source=web&id=13686e67627054a7bc88859ba8e65859e637980d&sig=kMchFEW2V-DJYfrjCVzw9w&expire=1716399469&ofs=11&usr=183636" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div id="premiumPopup" class="popup">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <div class="popup-content">
+            <h2>This is a premium feature</h2>
+            <div id="premiumBenefits"></div>
+            <button id="purchaseButton">Purchase Premium</button>
+        </div>
+    </div>
+
+    <div class="three-dots" onclick="openPopup()">
+        <span>&#8942;</span>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var video = document.getElementById('mainVideo');
+            var popup = document.getElementById('premiumPopup');
+            var premiumBenefits = document.getElementById('premiumBenefits');
+            var downloadButton = document.getElementById('downloadButton');
+
+            // Fetch premium benefits from file
+            fetch('/premium/benefits.txt')
+                .then(response => response.text())
+                .then(data => {
+                    premiumBenefits.innerHTML = "<p>" + data.split("\n").join("</p><p>") + "</p>";
+                });
+
+            // Fullscreen button override
+            video.addEventListener('webkitfullscreenchange', showPopup);
+            video.addEventListener('mozfullscreenchange', showPopup);
+            video.addEventListener('fullscreenchange', showPopup);
+            video.addEventListener('MSFullscreenChange', showPopup);
+
+            // Show popup on download button click
+            downloadButton.addEventListener('click', function() {
+                popup.style.display = "block";
+                video.pause(); // Pause the video when the popup opens
+            });
+
+            function showPopup() {
+                if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+                    document.exitFullscreen();
+                    popup.style.display = "block";
+                    video.pause(); // Pause the video when the popup opens
+                }
+            }
+
+            window.closePopup = function() {
+                popup.style.display = "none";
+                video.play(); // Resume the video when the popup closes
+            }
+
+            window.openPopup = function() {
+                popup.style.display = "block";
+                video.pause(); // Pause the video when the popup opens
+            }
+        });
+    </script>
+</body>
+</html>
