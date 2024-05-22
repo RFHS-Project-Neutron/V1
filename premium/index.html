@@ -98,7 +98,7 @@
     </div>
 
     <div id="premiumPopup" class="popup">
-        <span class="close">&times;</span>
+        <span class="close" onclick="closePopup()">&times;</span>
         <div class="popup-content">
             <h2>This is a premium feature</h2>
             <div id="premiumBenefits"></div>
@@ -110,10 +110,8 @@
         document.addEventListener('DOMContentLoaded', function () {
             var video = document.getElementById('mainVideo');
             var popup = document.getElementById('premiumPopup');
-            var span = document.getElementsByClassName('close')[0];
             var premiumBenefits = document.getElementById('premiumBenefits');
             var downloadButton = document.getElementById('downloadButton');
-            var dotsIcon = document.getElementById('dotsIcon');
 
             // Fetch premium benefits from file
             fetch('/premium/benefits.txt')
@@ -134,13 +132,6 @@
                 video.pause(); // Pause the video when the popup opens
             });
 
-            // Show popup on dots icon click
-            dotsIcon.addEventListener('click', function(event) {
-                event.stopPropagation(); // Prevent the default behavior of showing the menu
-                popup.style.display = "block";
-                video.pause(); // Pause the video when the popup opens
-            });
-
             function showPopup() {
                 if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
                     document.exitFullscreen();
@@ -149,16 +140,9 @@
                 }
             }
 
-            span.onclick = function() {
+            window.closePopup = function() {
                 popup.style.display = "none";
                 video.play(); // Resume the video when the popup closes
-            }
-
-            window.onclick = function(event) {
-                if (event.target == popup) {
-                    popup.style.display = "none";
-                    video.play(); // Resume the video when the popup closes
-                }
             }
         });
     </script>
