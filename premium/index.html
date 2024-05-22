@@ -7,74 +7,68 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://wallpapers.com/images/hd/pure-black-oled-l77wpyl1roxtxnwy.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            overflow: hidden;
         }
 
         .video-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 70vh; /* Set initial height to 70% of the viewport height */
-            max-width: 80%; /* Set maximum width to 80% of the viewport width */
-            max-height: 80%; /* Set maximum height to 80% of the viewport height */
-            min-width: 70%; /* Set minimum width to 70% of the viewport width */
-            min-height: 70%; /* Set minimum height to 70% of the viewport height */
-            margin: auto; /* Center horizontally */
+            height: 100%;
         }
 
         .video-container video {
-            width: auto; /* Set video width to auto */
-            height: auto; /* Set video height to auto */
-            max-width: 100%; /* Ensure video does not exceed container width */
-            max-height: 100%; /* Ensure video does not exceed container height */
+            min-width: 80%;
+            max-width: 90%;
+            height: auto;
         }
 
         .popup {
             display: none;
             position: fixed;
             z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
             background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
         }
 
         .popup-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 80%;
-            max-width: 500px;
+            margin-bottom: 20px;
         }
 
         .close {
-            color: #aaa;
+            color: white;
             float: right;
             font-size: 28px;
             font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: black;
-            text-decoration: none;
             cursor: pointer;
         }
 
         #purchaseButton {
-            display: block;
-            margin: 20px auto;
+            display: inline-block;
             padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
+            background-color: gold;
+            color: black;
             border: none;
+            border-radius: 25px;
             cursor: pointer;
+            transition: transform 0.3s;
         }
 
         #purchaseButton:hover {
-            background-color: #45a049;
+            transform: scale(1.05);
+            box-shadow: 0 0 10px gold;
         }
     </style>
 </head>
@@ -87,10 +81,20 @@
     </div>
 
     <div id="premiumPopup" class="popup">
+        <span class="close">&times;</span>
         <div class="popup-content">
-            <span class="close">&times;</span>
             <h2>This is a premium feature</h2>
-            <div id="premiumBenefits"></div>
+            <div id="premiumBenefits">
+                <p>As a premium member, you'll enjoy the following benefits:</p>
+                <ul>
+                    <li>Access to exclusive content</li>
+                    <li>Ad-free experience</li>
+                    <li>Early access to new releases</li>
+                    <li>Priority customer support</li>
+                    <li>Download videos for offline viewing</li>
+                    <li>HD and 4K streaming options</li>
+                </ul>
+            </div>
             <button id="purchaseButton">Purchase Premium</button>
         </div>
     </div>
@@ -100,13 +104,6 @@
             var video = document.getElementById('mainVideo');
             var popup = document.getElementById('premiumPopup');
             var span = document.getElementsByClassName('close')[0];
-
-            // Load premium benefits
-            fetch('/premium/benefits.txt')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('premiumBenefits').innerText = data;
-                });
 
             // Fullscreen button override
             video.addEventListener('webkitfullscreenchange', showPopup);
