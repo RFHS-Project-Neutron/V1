@@ -9,7 +9,7 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-image: url('https://wallpapers.com/images/hd/pure-black-oled-l77wpyl1roxtxnwy.jpg');
+            background-image: url('https://img.freepik.com/free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products_1258-72874.jpg?size=338&ext=jpg&ga=GA1.1.2082370165.1716336000&semt=ais_user');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -70,6 +70,22 @@
             transform: scale(1.05);
             box-shadow: 0 0 10px gold;
         }
+
+        #downloadButton {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        #downloadButton:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 10px #4CAF50;
+        }
     </style>
 </head>
 <body>
@@ -84,17 +100,7 @@
         <span class="close">&times;</span>
         <div class="popup-content">
             <h2>This is a premium feature</h2>
-            <div id="premiumBenefits">
-                <p>As a premium member, you'll enjoy the following benefits:</p>
-                <ul>
-                    <li>Access to exclusive content</li>
-                    <li>Ad-free experience</li>
-                    <li>Early access to new releases</li>
-                    <li>Priority customer support</li>
-                    <li>Download videos for offline viewing</li>
-                    <li>HD and 4K streaming options</li>
-                </ul>
-            </div>
+            <div id="premiumBenefits"></div>
             <button id="purchaseButton">Purchase Premium</button>
         </div>
     </div>
@@ -104,12 +110,26 @@
             var video = document.getElementById('mainVideo');
             var popup = document.getElementById('premiumPopup');
             var span = document.getElementsByClassName('close')[0];
+            var premiumBenefits = document.getElementById('premiumBenefits');
+            var downloadButton = document.getElementById('downloadButton');
+
+            // Fetch premium benefits from file
+            fetch('/premium/benefits.txt')
+                .then(response => response.text())
+                .then(data => {
+                    premiumBenefits.innerHTML = "<p>" + data.split("\n").join("</p><p>") + "</p>";
+                });
 
             // Fullscreen button override
             video.addEventListener('webkitfullscreenchange', showPopup);
             video.addEventListener('mozfullscreenchange', showPopup);
             video.addEventListener('fullscreenchange', showPopup);
             video.addEventListener('MSFullscreenChange', showPopup);
+
+            // Show popup on download button click
+            downloadButton.addEventListener('click', function() {
+                popup.style.display = "block";
+            });
 
             function showPopup() {
                 if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
