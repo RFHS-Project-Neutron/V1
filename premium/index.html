@@ -6,12 +6,10 @@
     <title>Video Embed</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Fredoka One', cursive;
             margin: 0;
             padding: 0;
             background-color: black;
-            background-size: cover;
-            background-position: center;
             height: 100vh;
             overflow: hidden;
         }
@@ -87,6 +85,7 @@
             box-shadow: 0 0 10px #4CAF50;
         }
     </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 </head>
 <body oncontextmenu="return false;">
     <div class="video-container">
@@ -129,22 +128,26 @@
             // Show popup on download button click
             downloadButton.addEventListener('click', function() {
                 popup.style.display = "block";
+                video.pause(); // Pause the video when the popup opens
             });
 
             function showPopup() {
                 if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
                     document.exitFullscreen();
                     popup.style.display = "block";
+                    video.pause(); // Pause the video when the popup opens
                 }
             }
 
             span.onclick = function() {
                 popup.style.display = "none";
+                video.play(); // Resume the video when the popup closes
             }
 
             window.onclick = function(event) {
                 if (event.target == popup) {
                     popup.style.display = "none";
+                    video.play(); // Resume the video when the popup closes
                 }
             }
         });
