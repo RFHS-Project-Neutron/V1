@@ -7,6 +7,7 @@
     <style>
         body {
             font-family: 'Fredoka One', cursive;
+            font-weight: lighter;
             margin: 0;
             padding: 0;
             background-color: black;
@@ -134,7 +135,8 @@
             });
 
             // Show popup on dots icon click
-            dotsIcon.addEventListener('click', function() {
+            dotsIcon.addEventListener('click', function(event) {
+                event.stopPropagation(); // Prevent the default behavior of showing the menu
                 popup.style.display = "block";
                 video.pause(); // Pause the video when the popup opens
             });
