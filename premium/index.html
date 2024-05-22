@@ -43,6 +43,7 @@
 
         .popup-content {
             margin-bottom: 20px;
+            text-align: left;
         }
 
         .close {
@@ -111,6 +112,7 @@
             var span = document.getElementsByClassName('close')[0];
             var premiumBenefits = document.getElementById('premiumBenefits');
             var downloadButton = document.getElementById('downloadButton');
+            var dotsIcon = document.getElementById('dotsIcon');
 
             // Fetch premium benefits from file
             fetch('/premium/benefits.txt')
@@ -127,6 +129,12 @@
 
             // Show popup on download button click
             downloadButton.addEventListener('click', function() {
+                popup.style.display = "block";
+                video.pause(); // Pause the video when the popup opens
+            });
+
+            // Show popup on dots icon click
+            dotsIcon.addEventListener('click', function() {
                 popup.style.display = "block";
                 video.pause(); // Pause the video when the popup opens
             });
