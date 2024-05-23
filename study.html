@@ -13,6 +13,7 @@
             height: 100vh;
             background-color: #f0f0f0;
             margin: 0;
+            position: relative;
         }
 
         .container {
@@ -50,6 +51,17 @@
             font-size: 18px;
             margin-top: 20px;
         }
+
+        .accuracy {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            text-align: right;
+        }
+
+        .accuracy p {
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -57,31 +69,52 @@
         <h1>Exact Answer Quiz</h1>
         <div id="question-container">
             <h2 id="question"></h2>
-            <input type="text" id="answer" placeholder="Type your answer here">
+            <input type="text" id="answer" placeholder="Type your answer here" onkeydown="if(event.keyCode===13) checkAnswer()">
             <button onclick="checkAnswer()">Submit</button>
         </div>
         <p id="result"></p>
     </div>
+    <div class="accuracy">
+        <p id="all-time-accuracy"></p>
+        <p id="last-15m-accuracy"></p>
+    </div>
     <script>
         const questions = [
             {
-                question: "What is the capital of France?",
-                answer: "Paris"
+                question: "Como te llamas?",
+                answer: "me llamo christian"
             },
             {
-                question: "What is 2 + 2?",
-                answer: "4"
+                question: "Como estas? Por que?",
+                answer: "yo estoy bien porque esta clase es divertido"
             },
             {
-                question: "What is the largest planet in our Solar System?",
-                answer: "Jupiter"
+                question: "De donde eres?",
+                answer: "Soy de River Falls"
             }
         ];
+
+        let usedQuestions = [];
+        let correctAnswers = 0;
+        let totalAnswers = 0;
+        let correctAnswers15m = 0;
+        let totalAnswers15m = 0;
+        let answerHistory = [];
 
         let currentQuestionIndex = getRandomQuestionIndex();
 
         function getRandomQuestionIndex() {
-            return Math.floor(Math.random() * questions.length);
+            if (usedQuestions.length === questions.length) {
+                usedQuestions = [];
+            }
+
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * questions.length);
+            } while (usedQuestions.includes(newIndex));
+
+            usedQuestions.push(newIndex);
+            return newIndex;
         }
 
         function loadQuestion() {
@@ -94,8 +127,15 @@
             const answerInput = document.getElementById('answer').value.trim().toLowerCase();
             const resultElement = document.getElementById('result');
             const correctAnswer = questions[currentQuestionIndex].answer.toLowerCase();
+            const currentTime = new Date();
+
+            totalAnswers++;
+            totalAnswers15m++;
+            answerHistory.push({ time: currentTime, correct: answerInput === correctAnswer });
 
             if (answerInput === correctAnswer) {
+                correctAnswers++;
+                correctAnswers15m++;
                 resultElement.textContent = "Correct!";
                 resultElement.style.color = "green";
                 currentQuestionIndex = getRandomQuestionIndex();
@@ -105,6 +145,26 @@
                 resultElement.textContent = "Incorrect!";
                 resultElement.style.color = "red";
             }
+
+            updateAccuracy();
+            setTimeout(() => {
+                resultElement.textContent = '';
+            }, 3000);
+        }
+
+        function updateAccuracy() {
+            const allTimeAccuracy = (correctAnswers / totalAnswers) * 100;
+            document.getElementById('all-time-accuracy').textContent = `All-time accuracy: ${allTimeAccuracy.toFixed(2)}%`;
+            document.getElementById('all-time-accuracy').style.color = allTimeAccuracy >= 70 ? "green" : "red";
+
+            const currentTime = new Date();
+            answerHistory = answerHistory.filter(entry => (currentTime - new Date(entry.time)) < 15 * 60 * 1000);
+            correctAnswers15m = answerHistory.filter(entry => entry.correct).length;
+            totalAnswers15m = answerHistory.length;
+
+            const last15mAccuracy = (correctAnswers15m / totalAnswers15m) * 100 || 0;
+            document.getElementById('last-15m-accuracy').textContent = `Last 15 minutes accuracy: ${last15mAccuracy.toFixed(2)}%`;
+            document.getElementById('last-15m-accuracy').style.color = last15mAccuracy >= 70 ? "green" : "red";
         }
 
         window.onload = loadQuestion;
