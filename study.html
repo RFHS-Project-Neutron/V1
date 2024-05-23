@@ -62,6 +62,16 @@
         .accuracy p {
             margin: 0;
         }
+
+        .reset-button {
+            margin-top: 20px;
+            font-size: 16px;
+            background-color: #ccc;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -73,6 +83,7 @@
             <button onclick="checkAnswer()">Submit</button>
         </div>
         <p id="result"></p>
+        <button class="reset-button" onclick="resetAccuracy()">Reset Accuracy</button>
     </div>
     <div class="accuracy">
         <p id="all-time-accuracy"></p>
@@ -165,6 +176,15 @@
             const last15mAccuracy = (correctAnswers15m / totalAnswers15m) * 100 || 0;
             document.getElementById('last-15m-accuracy').textContent = `Last 15 minutes accuracy: ${last15mAccuracy.toFixed(2)}%`;
             document.getElementById('last-15m-accuracy').style.color = last15mAccuracy >= 70 ? "green" : "red";
+        }
+
+        function resetAccuracy() {
+            correctAnswers = 0;
+            totalAnswers = 0;
+            correctAnswers15m = 0;
+            totalAnswers15m = 0;
+            answerHistory = [];
+            updateAccuracy();
         }
 
         window.onload = loadQuestion;
