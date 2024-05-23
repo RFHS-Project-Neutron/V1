@@ -69,7 +69,7 @@
         <h1>Exact Answer Quiz</h1>
         <div id="question-container">
             <h2 id="question"></h2>
-            <input type="text" id="answer" placeholder="Type your answer here" onkeydown="if(event.keyCode===13) checkAnswer()">
+            <input type="text" id="answer" placeholder="Type your answer here" autocomplete="off" onkeydown="if(event.keyCode===13) checkAnswer()">
             <button onclick="checkAnswer()">Submit</button>
         </div>
         <p id="result"></p>
