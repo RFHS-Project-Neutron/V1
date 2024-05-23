@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exact Answer Quiz</title>
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            font-size: 18px;
+            padding: 10px;
+            width: calc(100% - 22px);
+            margin-bottom: 20px;
+        }
+
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        p {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Exact Answer Quiz</h1>
+        <div id="question-container">
+            <h2 id="question"></h2>
+            <input type="text" id="answer" placeholder="Type your answer here">
+            <button onclick="checkAnswer()">Submit</button>
+        </div>
+        <p id="result"></p>
+    </div>
+    <script>
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                answer: "Paris"
+            },
+            {
+                question: "What is 2 + 2?",
+                answer: "4"
+            },
+            {
+                question: "What is the largest planet in our Solar System?",
+                answer: "Jupiter"
+            }
+        ];
+
+        let currentQuestionIndex = getRandomQuestionIndex();
+
+        function getRandomQuestionIndex() {
+            return Math.floor(Math.random() * questions.length);
+        }
+
+        function loadQuestion() {
+            const questionElement = document.getElementById('question');
+            const currentQuestion = questions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+        }
+
+        function checkAnswer() {
+            const answerInput = document.getElementById('answer').value.trim().toLowerCase();
+            const resultElement = document.getElementById('result');
+            const correctAnswer = questions[currentQuestionIndex].answer.toLowerCase();
+
+            if (answerInput === correctAnswer) {
+                resultElement.textContent = "Correct!";
+                resultElement.style.color = "green";
+                currentQuestionIndex = getRandomQuestionIndex();
+                loadQuestion();
+                document.getElementById('answer').value = '';
+            } else {
+                resultElement.textContent = "Incorrect!";
+                resultElement.style.color = "red";
+            }
+        }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>
