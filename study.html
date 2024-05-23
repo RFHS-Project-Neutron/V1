@@ -169,13 +169,22 @@
             document.getElementById('all-time-accuracy').style.color = allTimeAccuracy >= 70 ? "green" : "red";
 
             const currentTime = new Date();
-            answerHistory = answerHistory.filter(entry => (currentTime - new Date(entry.time)) < 15 * 60 * 1000);
+            answerHistory= answerHistory.filter(entry => (currentTime - new Date(entry.time)) < 15 * 60 * 1000);
             correctAnswers15m = answerHistory.filter(entry => entry.correct).length;
             totalAnswers15m = answerHistory.length;
 
             const last15mAccuracy = (correctAnswers15m / totalAnswers15m) * 100 || 0;
             document.getElementById('last-15m-accuracy').textContent = `Last 15 minutes accuracy: ${last15mAccuracy.toFixed(2)}%`;
             document.getElementById('last-15m-accuracy').style.color = last15mAccuracy >= 70 ? "green" : "red";
+            
+            // Save accuracy data to localStorage
+            localStorage.setItem('exact_answer_quiz_accuracy', JSON.stringify({
+                correctAnswers,
+                totalAnswers,
+                correctAnswers15m,
+                totalAnswers15m,
+                answerHistory
+            }));
         }
 
         function resetAccuracy() {
@@ -187,7 +196,27 @@
             updateAccuracy();
         }
 
-        window.onload = loadQuestion;
+        // Load accuracy data from localStorage when the page loads
+        window.onload = function() {
+            const accuracyData = localStorage.getItem('exact_answer_quiz_accuracy');
+            if (accuracyData) {
+                const {
+                    correctAnswers: savedCorrectAnswers,
+                    totalAnswers: savedTotalAnswers,
+                    correctAnswers15m: savedCorrectAnswers15m,
+                    totalAnswers15m: savedTotalAnswers15m,
+                    answerHistory: savedAnswerHistory
+                } = JSON.parse(accuracyData);
+
+                correctAnswers = savedCorrectAnswers;
+                totalAnswers = savedTotalAnswers;
+                correctAnswers15m = savedCorrectAnswers15m;
+                totalAnswers15m = savedTotalAnswers15m;
+                answerHistory = savedAnswerHistory;
+                updateAccuracy();
+            }
+            loadQuestion();
+        };
     </script>
 </body>
 </html>
