@@ -77,11 +77,17 @@
                 });
         }
 
-        // Get the user's code - replace this with actual code retrieval logic
-        const userCode = '1234'; // Example code, replace with actual code logic
+        // Get the user's code from the URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const userCode = urlParams.get('userCode');
 
         // Update the countdown with the user's code
-        updateCountdown(userCode);
+        if (userCode) {
+            updateCountdown(userCode);
+        } else {
+            // Handle case when user code is not provided
+            document.getElementById('daysLeft').textContent = 'User code not found';
+        }
     </script>
 </body>
 </html>
