@@ -54,7 +54,7 @@
 
         // Function to fetch subscription dates and update the countdown
         function updateCountdown(userCode) {
-            fetch('subscription-dates.json')
+            fetch('/test/subscription-dates.json')
                 .then(response => response.json())
                 .then(subscriptionDates => {
                     const endDate = subscriptionDates[userCode];
