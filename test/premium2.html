@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Oswald', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .dashboard-container {
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+        }
+        .countdown-box {
+            width: 15%;
+            padding: 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-align: center;
+            border-radius: 8px;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        /* Additional CSS from the login page */
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 9999;
+            text-align: center;
+            transition: opacity 1s;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 9998;
+            pointer-events: auto;
+            transition: opacity 1s;
+        }
+        .login-box-wrapper {
+            text-align: center;
+        }
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .additional-text {
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        #welcomeMessage {
+            display: none;
+            position: absolute;
+            z-index: 10000;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            60% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="countdown-box" id="countdownBox">Days until renewal: <span id="daysLeft"></span></div>
+        <!-- Other dashboard content here -->
+    </div>
+
+    <div class="container" id="loginContainer">
+        <div class="login-box-wrapper" id="loginBoxWrapper">
+            <div class="additional-text" id="errorMessage"></div>
+            <div class="login-box">
+                <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
+                    <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
+                    <button type="button" onclick="checkCode()">➔</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div id="welcomeMessage"></div>
+
+    <script src="codemap.js"></script>
+    <script>
+        // Function to calculate days left until renewal, ending at midnight on the last day
+        function calculateDaysLeft(endDate) {
+            const today = new Date();
+            const end = new Date(endDate);
+            end.setHours(23, 59, 59, 999); // Set to end of the day
+            const timeDiff = end - today;
+            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            return daysLeft;
+        }
+
+        // Function to fetch subscription dates and update the countdown
+        function updateCountdown(userCode) {
+            fetch('subscription-dates.json')
+                .then(response => response.json())
+                .then(subscriptionDates => {
+                    const endDate = subscriptionDates[userCode];
+                    if (endDate) {
+                        const daysLeft = calculateDaysLeft(endDate);
+                        document.getElementById('daysLeft').textContent = daysLeft;
+                    } else {
+                        document.getElementById('daysLeft').textContent = 'N/A';
+                    }
+
+                    // Automatically update the countdown (e.g., every day at midnight)
+                    setInterval(() => {
+                        const daysLeft = calculateDaysLeft(endDate);
+                        document.getElementById('daysLeft').textContent = daysLeft;
+                    }, 86400000); // 86400000 ms = 24 hours
+                })
+                .catch(error => {
+                    console.error('Error fetching subscription dates:', error);
+                    document.getElementById('daysLeft').textContent = 'Error';
+                });
+        }
+
+        // Get the user's code - replace this with actual code retrieval logic
+        const userCode = '1234'; // Example code, replace with actual code logic
+
+        // Update the countdown with the user's code
+        updateCountdown(userCode);
+
+        var consecutiveIncorrectAttempts = 0;
+        var error
+        var consecutiveIncorrectAttempts = 0;
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
+        var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
+
+        window.onload = function() {
+            if (errorStartTime > 0) {
+                starterror();
+            }
+        };
+
+        function checkCode() {
+            var inputCode = document.getElementById("codeInput").value.trim();
+
+            if (inputCode === "") {
+                document.getElementById("errorMessage").innerText = "Code cannot be empty.";
+                return;
+            }
+
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var validCodes = this.responseText.split("\n");
+                    if (validCodes.includes(inputCode)) {
+                        var userName = codeToNameMap[inputCode];
+                        document.getElementById("loginBoxWrapper").style.display = "none"; // Hide only the login box wrapper
+                        var welcomeMessage = document.getElementById("welcomeMessage");
+                        welcomeMessage.innerText = "Welcome, " + userName + "!";
+                        welcomeMessage.style.display = "block";
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "1";
+                        }, 0);
+                        setTimeout(() => {
+                            welcomeMessage.style.opacity = "0";
+                            document.getElementById("loginContainer").style.opacity = "0";
+                            document.getElementById("overlay").style.opacity = "0";
+                        }, 3500); // 1.5s fade-in + 2s display
+                        setTimeout(() => {
+                            document.getElementById("overlay").style.display = "none";
+                            document.getElementById("overlay").style.pointerEvents = "none";
+                            document.getElementById("loginContainer").style.display = "none"; // Ensure container is hidden after fade-out
+                        }, 4500); // 1s fade-out for overlay
+                    } else {
+                        consecutiveIncorrectAttempts++;
+                        if (consecutiveIncorrectAttempts >= 6) {
+                            starterror();
+                        } else {
+                            document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                        }
+                    }
+                }
+            };
+            xhttp.open("GET", "/test/codes.txt", true);
+            xhttp.send();
+        }
+
+        function starterror() {
+            document.getElementById("codeInput").disabled = true;
+            document.querySelector("button").disabled = true;
+
+            errorStartTime = Date.now();
+            localStorage.setItem("errorStartTime", errorStartTime.toString());
+
+            var errorInterval = setInterval(function() {
+                var remainingTime = errorDuration - (Date.now() - errorStartTime);
+                if (remainingTime <= 0) {
+                    clearInterval(errorInterval);
+                    consecutiveIncorrectAttempts = 0;
+                    document.getElementById("errorMessage").innerText = "";
+                    document.getElementById("codeInput").disabled = false;
+                    document.querySelector("button").disabled = false;
+                    document.getElementById("errorMessage").innerText = "";
+                    localStorage.removeItem("errorStartTime");
+                } else {
+                    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
