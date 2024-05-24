@@ -55,7 +55,7 @@
         const userCode = '1234'; // Example code
 
         // Fetch the subscription dates from the JSON file
-        fetch('subscription-dates.json')
+        fetch('/test/subscription-dates.json')
             .then(response => response.json())
             .then(subscriptionDates => {
                 const endDate = subscriptionDates[userCode];
