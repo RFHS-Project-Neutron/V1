@@ -42,44 +42,49 @@
     </div>
 
     <script>
-        // Function to calculate days left until renewal
+        // Function to calculate days left until renewal, ending at midnight on the last day
         function calculateDaysLeft(endDate) {
             const today = new Date();
             const end = new Date(endDate);
+            end.setHours(23, 59, 59, 999); // Set to end of the day
             const timeDiff = end - today;
             const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             return daysLeft;
         }
 
+        // Function to fetch subscription dates and update the countdown
+        function updateCountdown(userCode) {
+            fetch('subscription-dates.json')
+                .then(response => response.json())
+                .then(subscriptionDates => {
+                    const endDate = subscriptionDates[userCode];
+                    if (endDate) {
+                        const daysLeft = calculateDaysLeft(endDate);
+                        document.getElementById('daysLeft').textContent = daysLeft;
+                    } else {
+                        document.getElementById('daysLeft').textContent = 'N/A';
+                    }
+
+                    // Automatically update the countdown (e.g., every day at midnight)
+                    setInterval(() => {
+                        const daysLeft = calculateDaysLeft(endDate);
+                        document.getElementById('daysLeft').textContent = daysLeft;
+                    }, 86400000); // 86400000 ms = 24 hours
+                })
+                .catch(error => {
+                    console.error('Error fetching subscription dates:', error);
+                    document.getElementById('daysLeft').textContent = 'Error';
+                });
+        }
+
         // Get the user's code - replace this with actual code retrieval logic
-        const userCode = '1234'; // Example code
+        const userCode = '1234'; // Example code, replace with actual code logic
 
-        // Fetch the subscription dates from the JSON file
-        fetch('/test/subscription-dates.json')
-            .then(response => response.json())
-            .then(subscriptionDates => {
-                const endDate = subscriptionDates[userCode];
-                if (endDate) {
-                    const daysLeft = calculateDaysLeft(endDate);
-                    document.getElementById('daysLeft').textContent = daysLeft;
-                } else {
-                    document.getElementById('daysLeft').textContent = 'N/A';
-                }
-
-                // Automatically update the countdown (e.g., every day at midnight)
-                setInterval(() => {
-                    const daysLeft = calculateDaysLeft(endDate);
-                    document.getElementById('daysLeft').textContent = daysLeft;
-                }, 86400000); // 86400000 ms = 24 hours
-            })
-            .catch(error => {
-                console.error('Error fetching subscription dates:', error);
-                document.getElementById('daysLeft').textContent = 'Error';
-            });
+        // Update the countdown with the user's code
+        updateCountdown(userCode);
     </script>
 </body>
 </html>
-
 
 
 
