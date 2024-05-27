@@ -15,26 +15,6 @@
             margin: 0;
             background-color: #f4f4f4;
         }
-        .dashboard-container {
-            position: relative;
-            z-index: 1; /* Ensure the dashboard content is above the background */
-            width: 80%;
-            max-width: 1200px;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-        }
-        .countdown-box {
-            width: 15%;
-            padding: 20px;
-            background-color: #007bff;
-            color: #fff;
-            text-align: center;
-            border-radius: 8px;
-            font-size: 24px;
-            margin-bottom: 20px;
-        }
 
         .container {
             position: fixed;
@@ -130,10 +110,10 @@
         }
         
         .container-nav {
-        position: relative;
-        width: 100%;
-        height: 100vh;
-    }
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
         .box {
             position: absolute;
             top: calc(1/32 * 100%);
@@ -172,6 +152,10 @@
         .box6 {
             left: calc(12.75/16 * 100%);
             width: calc(1.25/16 * 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .box7 {
@@ -185,6 +169,14 @@
             text-align: center;
             position: relative;
             font-weight: 600; /* Increased font weight */
+        }
+
+        .countdown-number {
+            font-size: 24px;
+        }
+
+        .countdown-text {
+            font-size: 16px;
         }
     </style>
 </head>
@@ -201,15 +193,20 @@
         </div>
     </div>
 
-        <div class="container-nav">
+    <div class="container-nav">
         <div class="box box1"></div>
         <div class="box box2">
-            <div class="text" data-text="Welcome, Christian!">Welcome, Christian!</div>
+            <div class="text" id="welcomeText">Welcome, Christian!</div>
         </div>
         <div class="box box3"></div>
         <div class="box box4"></div>
         <div class="box box5"></div>
-        <div class="box box6"></div>
+        <div class="box box6">
+            <div class="countdown-box">
+                <div class="countdown-number" id="daysLeft">--</div>
+                <div class="countdown-text">days</div>
+            </div>
+        </div>
         <div class="box box7"></div>
     </div>
 
@@ -217,7 +214,6 @@
     <div id="welcomeMessage"></div>
 
     <div class="dashboard-container">
-        <div class="countdown-box" id="countdownBox">Days until renewal: <span id="daysLeft"></span></div>
         <!-- Other dashboard content here -->
     </div>
     <script src="/test/subscriptions.js"></script>
@@ -280,6 +276,9 @@
 
                 // Update the countdown box with the correct days left
                 updateCountdownBox(inputCode);
+
+                // Update the welcome text in the main UI
+                document.getElementById("welcomeText").innerText = "Welcome, " + userName + "!";
             } else {
                 consecutiveIncorrectAttempts++;
                 if (consecutiveIncorrectAttempts >= 6) {
