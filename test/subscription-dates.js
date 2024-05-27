@@ -1,4 +1,4 @@
-// Mapping of user codes to their subscription end dates
+// subscription-dates.js
 const subscriptionDates = {
     "1234": "2024-07-01",
     "4567": "2024-08-15",
