@@ -134,14 +134,14 @@
 
         .box2 {
             left: calc(2/16 * 100%);
-            width: calc(6/16 * 100%);
+            width: calc(4.5/16 * 100%);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
 .box3 {
-    left: calc(8.25/16 * 100%);
+    left: calc(6.75/16 * 100%);
     background-image: url('https://math4school.site/premium/assets/images/icons/home.png');
     background-size: 65%; /* Adjusted size */
     background-repeat: no-repeat; /* Prevent image from repeating */
@@ -149,6 +149,14 @@
 }
 
 .box4 {
+    left: calc(8.25/16 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/home.png');
+    background-size: 65%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+.box5 {
     left: calc(9.75/16 * 100%);
     width: calc(1.25/16 * 100%);
     background-image: url('https://math4school.site/premium/assets/images/icons/games.png?raw=true');
@@ -157,7 +165,7 @@
     background-position: center; /* Center the image */
 }
 
-.box5 {
+.box6 {
     left: calc(11.25/16 * 100%);
     background-image: url('https://math4school.site/premium/assets/images/icons/movies.png?raw=true');
     background-size: 65%; /* Adjusted size */
@@ -165,7 +173,7 @@
     background-position: center; /* Center the image */
 }
 
-        .box6 {
+        .box7 {
             left: calc(12.75/16 * 100%);
             width: calc(1.25/16 * 100%);
             display: flex;
@@ -174,7 +182,7 @@
             align-items: center;
         }
 
-.box7 {
+.box8 {
     left: calc(14.25/16 * 100%);
     background-image: url('https://math4school.site/premium/assets/images/icons/pn-plus-multicolor.png?raw=true');
     background-size: 80%; /* Adjusted size */
@@ -227,20 +235,21 @@
     </div>
 
     <div class="container-nav">
-        <a href="/index.html"><div class="box box1"></div></a>
+        <a href="/home"><div class="box box1"></div></a>
         <div class="box box2">
             <div class="text" id="welcomeText">Welcome, --!</div>
         </div>
         <a href="/index.html"><div class="box box3"></div></a>
         <a href="/index.html"><div class="box box4"></div></a>
         <a href="/index.html"><div class="box box5"></div></a>
-        <div class="box box6">
+        <a href="/index.html"><div class="box box6"></div></a>
+        <div class="box box7">
             <div class="countdown-box">
                 <div class="countdown-number" id="daysLeft">--</div>
                 <div class="countdown-text">days</div>
             </div>
         </div>
-        <div class="box box7"></div>
+        <div class="box box8"></div>
     </div>
 
     <div class="overlay" id="overlay"></div>
