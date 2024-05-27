@@ -14,11 +14,10 @@
             height: 100vh;
             margin: 0;
             background-color: #f4f4f4;
-            position: relative;
         }
         .dashboard-container {
             position: relative;
-            z-index: 1;
+            z-index: 1; /* Ensure the dashboard content is above the background */
             width: 80%;
             max-width: 1200px;
             background-color: #fff;
@@ -37,18 +36,6 @@
             margin-bottom: 20px;
         }
 
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s');
-            background-size: cover;
-            font-family: 'Impact', sans-serif;
-        }
-
         .container {
             position: fixed;
             top: 0;
@@ -58,10 +45,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: rgba(255, 255, 255, 0.8);
-            z-index: 9999;
-            text-align: center;
-            transition: opacity 1s;
+            z-index: 2; /* Ensure the login container is above the background */
         }
 
         .overlay {
@@ -71,15 +55,14 @@
             width: 100%;
             height: 100%;
             background: rgba(255, 255, 255, 0.8);
-            z-index: 9998;
+            z-index: 3; /* Ensure the overlay is above the background */
             pointer-events: auto;
             transition: opacity 1s;
         }
 
         .login-box-wrapper {
             text-align: center;
-            position: relative;
-            z-index: 2;
+            z-index: 4; /* Ensure the login box wrapper is above the background */
         }
 
         .login-box {
@@ -123,7 +106,10 @@
         #welcomeMessage {
             display: none;
             position: absolute;
-            z-index: 10000; /* Higher than the container */
+            z-index: 5; /* Ensure the welcome message is above the background */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             text-align: center;
             font-size: 24px;
             font-weight: bold;
@@ -137,9 +123,78 @@
             60% { opacity: 1; }
             100% { opacity: 0; }
         }
+
+        .box {
+            position: absolute;
+            top: calc(1/32 * 100%);
+            width: calc(1.25/16 * 100%);
+            height: calc(1.25/9 * 100%);
+            background-color: white;
+            border-radius: 10px; /* Rounded corners */
+            z-index: 0; /* Behind the login container */
+        }
+
+        .box1 {
+            left: calc(1/32 * 100%);
+        }
+
+        .box2 {
+            left: calc(2/16 * 100%);
+            width: calc(6/16 * 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box3 {
+            left: calc(8.25/16 * 100%);
+        }
+
+        .box4 {
+            left: calc(9.75/16 * 100%);
+            width: calc(1.25/16 * 100%);
+        }
+
+        .box5 {
+            left: calc(11.25/16 * 100%);
+        }
+
+        .box6 {
+            left: calc(12.75/16 * 100%);
+            width: calc(1.25/16 * 100%);
+        }
+
+        .box7 {
+            left: calc(14.25/16 * 100%);
+        }
+
+        .text {
+            font-family: Impact, Charcoal, sans-serif;
+            font-size: 24px;
+            color: black;
+            text-align: center;
+            line-height: calc(1.25/9 * 100%);
+            position: relative;
+            font-weight: 600; /* Increased font weight */
+        }
     </style>
 </head>
 <body>
+    <div class="container" id="loginContainer">
+        <div class="login-box-wrapper" id="loginBoxWrapper">
+            <div class="additional-text" id="errorMessage"></div>
+            <div class="login-box">
+                <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
+                    <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
+                    <button type="button" onclick="checkCode()">➔</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div id="welcomeMessage"></div>
+
     <div class="dashboard-container">
         <div class="countdown-box" id="countdownBox">Days until renewal: <span id="daysLeft"></span></div>
         <!-- Other dashboard content here -->
@@ -150,7 +205,8 @@
         function calculateDaysLeft(endDate) {
             const today = new Date();
             const end = new Date(endDate);
-            end.setHours(23, 59, 59, 999); // Set to end of the day
+            end.setHours(23, 59, 
+59, 59, 999); // Set to end of the day
             const timeDiff = end - today;
             const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
             return daysLeft;
@@ -249,19 +305,5 @@
             }, 1000);
         }
     </script>
-
-    <div class="container" id="loginContainer">
-        <div class="overlay" id="overlay"></div>
-        <div id="welcomeMessage"></div>
-        <div class="login-box-wrapper" id="loginBoxWrapper">
-            <div class="additional-text" id="errorMessage"></div>
-            <div class="login-box">
-                <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
-                    <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
-                    <button type="button" onclick="checkCode()">➔</button>
-                </form>
-            </div>
-        </div>
-    </div>
 </body>
 </html>
