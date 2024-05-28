@@ -1,14 +1,12 @@
 // subscription-dates.js
 const userNames = {
-    "1234": "John",
     "4567": "Christian",
-    "9101": "Emily",
+    "4061": "Preston",
     // Add more user names as needed
 };
 
 const subscriptionDates = {
-    "1234": "2024-07-01",
     "4567": "2024-08-15",
-    "9101": "2024-09-30",
+    "4061"; "2025-05-28
     // Add more codes and dates as needed
 };
