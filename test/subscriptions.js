@@ -9,6 +9,6 @@ const userNames = {
 const subscriptionDates = {
     "4061": "2025-05-28",
     "4567": "2024-08-15",
-    "2423": "9999-08-03",
+    "2423": "2069-08-03",
     // Add more codes and dates as needed
 };
