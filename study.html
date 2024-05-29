@@ -114,8 +114,8 @@
             {
                 question: "cual es tu clase favorita? por que?",
                 answer: "mi clase favorita es espanol porque esta es divertido"
-            }
-                        {
+            },
+            {
                 question: "que hay en tu mochila?",
                 answer: "tengo papel y lapices en mi mochila"
             },
@@ -137,20 +137,20 @@
             },
             {
                 question: "donde esta la cafeteria?",
-                answer: "la cafeteria esta circa de la biblioteca"
-            }
-                    {
+                answer: "la cafeteria esta cerca de la biblioteca"
+            },
+            {
                 question: "a que hora vas a la escuela?",
-                answer: "yo voy a escuela a las siete de las manana"
+                answer: "yo voy a la escuela a las siete de la manana"
             },
             {
                 question: "como eres?",
                 answer: "yo soy inteligente"
             },
             {
-                question: "cuantos personas hay en tu familia?",
+                question: "cuantas personas hay en tu familia?",
                 answer: "en mi familia hay cuatro personas"
-            },
+            }
         ];
 
         let usedQuestions = [];
@@ -217,7 +217,7 @@
             document.getElementById('all-time-accuracy').style.color = allTimeAccuracy >= 70 ? "green" : "red";
 
             const currentTime = new Date();
-            answerHistory= answerHistory.filter(entry => (currentTime - new Date(entry.time)) < 15 * 60 * 1000);
+            answerHistory = answerHistory.filter(entry => (currentTime - new Date(entry.time)) < 15 * 60 * 1000);
             correctAnswers15m = answerHistory.filter(entry => entry.correct).length;
             totalAnswers15m = answerHistory.length;
 
