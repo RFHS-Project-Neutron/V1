@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Email</title>
+</head>
+<body>
+    <h1>Verify Your Email</h1>
+    <input type="email" id="emailInput" placeholder="Enter your email">
+    <button onclick="sendVerification()">Send Verification Code</button>
+
+    <div id="verificationDiv" style="display: none;">
+        <input type="text" id="verificationCode" placeholder="Enter verification code">
+        <button onclick="verifyCode()">Verify</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
