@@ -18,7 +18,7 @@ app.post('/sendVerificationEmail', (req, res) => {
     const email = req.body.email;
     const verificationCode = Math.floor(100000 + Math.random() * 900000); // Generate a 6-digit verification code
     const mailOptions = {
-        from: 'flixohelp@gmail.com',
+        from: 'noreply.verify.pn@gmail.com',
         to: email,
         subject: 'Email Verification Code',
         text: `Your verification code is: ${verificationCode}`,
