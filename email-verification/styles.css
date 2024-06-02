@@ -1,0 +1,36 @@
+body {
+  font-family: 'Oswald', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  text-align: center;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+input {
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  font-size: 18px;
+  padding: 10px 20px;
+}
+
+#message {
+  margin-top: 20px;
+  font-size: 16px;
+}
