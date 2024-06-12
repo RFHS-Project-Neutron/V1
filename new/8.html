@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="949cf8fc-3930-423d-9c3e-85514eb684f7";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Impact', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQJw6rgmUbyLHmol_iwSpbp81zVZNDLkZJtiJDlibqNA&s");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000; /* Ensure the login container is above the background */
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 3; /* Ensure the overlay is above the background */
+            pointer-events: auto;
+            transition: opacity 1s;
+        }
+
+        .login-box-wrapper {
+            text-align: center;
+            z-index: 10; /* Ensure the login box wrapper is above the background */
+            position: relative; /* Add relative positioning */
+        }
+
+        .login-box {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            position: relative; /* Add relative positioning */
+            z-index: 10; /* Ensure the login box is above the overlay */
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            margin-right: 10px;
+            font-weight: bold;
+            z-index: 10;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 10;
+            transition: transform 0.3s ease; /* Add transition for the animation */
+        }
+
+        button:hover {
+            background-color: #0056b3;
+            transform: scale(1.1); /* Scale up the button */
+        }
+
+        .additional-text {
+            font-size: 20px;
+            color: red;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #welcomeMessage {
+            display: none;
+            position: absolute;
+            z-index: 5; /* Ensure the welcome message is above the background */
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            60% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .container-nav {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+        .box {
+            position: absolute;
+            top: calc(1/32 * 100%);
+            width: calc(1.25/16 * 100%);
+            height: calc(1.25/9 * 100%);
+            background-color: white;
+            border-radius: 10px; /* Rounded corners */
+            z-index: 0; /* Behind the login container */
+            transition: transform 0.3s ease; /* Add transition for the animation */
+        }
+
+        .box:hover {
+            transform: scale(1.1); /* Scale up the box */
+        }
+
+.box1 {
+    left: calc(1/32 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/exit.png?raw=true');
+    background-size: 65%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+        .box2 {
+            left: calc(2/16 * 100%);
+            width: calc(4.5/16 * 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+.box3 {
+    left: calc(6.75/16 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/home.png');
+    background-size: 65%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+.box4 {
+    left: calc(8.25/16 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/games.png');
+    background-size: 65%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+.box5 {
+    left: calc(9.75/16 * 100%);
+    width: calc(1.25/16 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/movies.png');
+    background-size: 65%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+.box6 {
+    left: calc(11.25/16 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/apps.png');
+    background-size: 65%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+        .box7 {
+            left: calc(12.75/16 * 100%);
+            width: calc(1.25/16 * 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+.box8 {
+    left: calc(14.25/16 * 100%);
+    background-image: url('https://math4school.site/premium/assets/images/icons/pn-plus-multicolor.png?raw=true');
+    background-size: 80%; /* Adjusted size */
+    background-repeat: no-repeat; /* Prevent image from repeating */
+    background-position: center; /* Center the image */
+}
+
+        .text {
+            font-family: Impact, Charcoal, sans-serif;
+            font-size: 24px;
+            color: black;
+            text-align: center;
+            position: relative;
+            font-weight: 600; /* Increased font weight */
+        }
+
+        .countdown-number {
+            font-size: 28px;
+            font-family: Impact, Charcoal, sans-serif;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+        }
+
+        .countdown-text {
+            font-size: 14px;
+            font-family: Impact, Charcoal, sans-serif;
+            font-weight: 600;
+            text-align: center;
+            position: relative;
+        }
+
+        /* New style for content display */
+        .content {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: none; /* Initially hidden */
+        }
+
+        .content.active {
+            display: block; /* Display when active */
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginContainer">
+        <div class="login-box-wrapper" id="loginBoxWrapper">
+            <div class="additional-text" id="errorMessage"></div>
+            <div class="login-box">
+                <form id="loginForm" onsubmit="event.preventDefault(); checkCode();">
+                    <input type="text" id="codeInput" maxlength="6" placeholder="Enter code (4-6 digits)" onkeypress="if(event.keyCode == 13) { event.preventDefault(); checkCode(); } return event.charCode >= 48 && event.charCode <= 57">
+                    <button type="button" onclick="checkCode()">➔</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-nav">
+        <a href="/home"><div class="box box1"></div></a>
+        <div class="box box2">
+            <div class="text" id="welcomeText">Welcome, --!</div>
+        </div>
+        <div class="box box3" onclick="showContent('home')"></div>
+        <div class="box box4" onclick="showContent('games')"></div>
+        <div class="box box5" onclick="showContent('movies')"></div>
+        <div class="box box6" onclick="showContent('apps')"></div>
+        <div class="box box7">
+            <div class="countdown-box">
+                <div class="countdown-number" id="daysLeft">--</div>
+                <div class="countdown-text">days</div>
+            </div>
+        </div>
+        <div class="box box8" onclick="showContent('extra')"></div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div id="welcomeMessage"></div>
+
+    <div class="dashboard-container">
+        <!-- Other dashboard content here -->
+    </div>
+
+    <div class="content" id="contentContainer">Loading...</div>
+
+    <script src="/test/subscriptions.js"></script>
+    <script>
+        // Function to calculate days left until renewal, ending at midnight on the last day
+        function calculateDaysLeft(endDate) {
+            const today = new Date();
+            const end = new Date(endDate);
+            end.setHours(23, 59, 59, 999); // Set to end of the day
+            const timeDiff = end - today;
+            const daysLeft = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+            return daysLeft;
+        }
+
+        // Function to update the countdown box with the correct days left
+        function updateCountdownBox(userCode) {
+            const endDate = subscriptionDates[userCode];
+            if (endDate) {
+                const daysLeft = calculateDaysLeft(endDate);
+                document.getElementById('daysLeft').textContent = daysLeft;
+            } else {
+                document.getElementById('daysLeft').textContent = 'N/A';
+            }
+
+            // Automatically update the countdown (e.g., every day at midnight)
+            setInterval(() => {
+                const daysLeft = calculateDaysLeft(endDate);
+                document.getElementById('daysLeft').textContent = daysLeft;
+            }, 86400000); // 86400000 ms = 24 hours
+        }
+
+        // Function to check the code and update the UI accordingly
+        function checkCode() {
+            const inputCode = document.getElementById("codeInput").value.trim();
+
+            if (inputCode === "") {
+                document.getElementById("errorMessage").innerText = "Code cannot be empty.";
+                return;
+            }
+
+            if (subscriptionDates[inputCode]) {
+                const userName = userNames[inputCode] || "User";
+                document.getElementById("loginBoxWrapper").style.display = "none"; // Hide only the login box wrapper
+                const welcomeMessage = document.getElementById("welcomeMessage");
+                welcomeMessage.innerText = "Welcome, " + userName + "!";
+                welcomeMessage.style.display = "block";
+                setTimeout(() => {
+                    welcomeMessage.style.opacity = "1";
+                }, 0);
+                setTimeout(() => {
+                    welcomeMessage.style.opacity = "0";
+                    document.getElementById("loginContainer").style.opacity = "0";
+                    document.getElementById("overlay").style.opacity = "0";
+                }, 3500); // 1.5s fade-in + 2s display
+                setTimeout(() => {
+                    document.getElementById("overlay").style.display = "none";
+                    document.getElementById("overlay").style.pointerEvents = "none";
+                    document.getElementById("loginContainer").style.display = "none"; // Ensure container is hidden after fade-out
+                }, 4500); // 1s fade-out for overlay
+
+                // Update the countdown box with the correct days left
+                updateCountdownBox(inputCode);
+
+                // Update the welcome text in the main UI
+                document.getElementById("welcomeText").innerText = "Welcome, " + userName + "!";
+            } else {
+                consecutiveIncorrectAttempts++;
+                if (consecutiveIncorrectAttempts >= 6) {
+                    starterror();
+                } else {
+                    document.getElementById("errorMessage").innerText = "Invalid code. Please try again.";
+                }
+            }
+        }
+
+        var consecutiveIncorrectAttempts = 0;
+        var errorDuration = 600000; // 10 minutes in milliseconds (lockout cooldown)
+        var errorStartTime = parseInt(localStorage.getItem("errorStartTime") || "0");
+
+        window.onload = function() {
+            if (errorStartTime > 0) {
+                starterror();
+            }
+        };
+
+        function starterror() {
+            document.getElementById("codeInput").disabled = true;
+            document.querySelector("button").disabled = true;
+
+            errorStartTime = Date.now();
+            localStorage.setItem("errorStartTime", errorStartTime.toString());
+
+            var errorInterval = setInterval(function() {
+                var remainingTime = errorDuration - (Date.now() - errorStartTime);
+                if (remainingTime <= 0) {
+                    clearInterval(errorInterval);
+                    consecutiveIncorrectAttempts = 0;
+                    document.getElementById("errorMessage").innerText = "";
+                    document.getElementById("codeInput").disabled = false;
+                    document.querySelector("button").disabled = false;
+                    document.getElementById("errorMessage").innerText = "";
+                    localStorage.removeItem("errorStartTime");
+                } else {
+                    var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                    var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+                    document.getElementById("errorMessage").innerText = "Too many attempts. Try again in " + minutes + "m " + seconds + "s";
+                }
+            }, 1000);
+        }
+
+        // Function to load content from an external JavaScript file
+        function loadContent(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('contentContainer').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error loading content:', error);
+                    document.getElementById('contentContainer').innerHTML = 'Failed to load content.';
+                });
+        }
+
+    // Function to display content based on the box clicked
+    function showContent(type) {
+        const urlMap = {
+            home: '/test/home.js',
+            games: '/test/games.js',
+            movies: '/test/movies.js',
+            apps: '/test/apps.js'
+            // Add more types as needed
+        };
+
+        const url = urlMap[type];
+        if (url) {
+            loadContent(url);
+        }
+    }
+</script>
+</body>
+</html>
